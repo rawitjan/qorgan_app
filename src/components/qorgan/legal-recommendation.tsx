@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import {
   IconCheck,
+  IconChevronDown,
+  IconChevronUp,
   IconCopy,
   IconExternalLink,
   IconFileText,
@@ -22,10 +24,12 @@ export function LegalRecommendation({
 }) {
   const { locale } = useMode();
   const [copied, setCopied] = useState(false);
-  const [showFullTemplate, setShowFullTemplate] = useState(false);
-  const [templateLang, setTemplateLang] = useState<'kz' | 'ru'>(locale === 'ru' ? 'ru' : 'kz');
-
   const template = recommendation.eotinish_template;
+  const [showFullTemplate, setShowFullTemplate] = useState(Boolean(template));
+  const [templateLang, setTemplateLang] = useState<'kz' | 'ru'>(locale === 'ru' ? 'ru' : 'kz');
+  const importantPoints = recommendation.important_points ?? [];
+  const recommendedSteps = recommendation.recommended_steps ?? [];
+  const officialResources = recommendation.official_resources ?? [];
   const templateText = template
     ? templateLang === 'ru'
       ? template.body_ru
@@ -52,7 +56,7 @@ export function LegalRecommendation({
   };
 
   return (
-    <section className={cn('rounded-2xl border border-blue-500/25 bg-blue-500/[0.06] p-4 flex flex-col gap-4', className)}>
+    <section className={cn('rounded-2xl border border-blue-500/30 bg-gradient-to-b from-blue-500/[0.09] to-surface p-4 flex flex-col gap-4 shadow-sm', className)}>
       {/* 1. Header & Situation Summary */}
       <div className="flex items-start gap-3">
         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-500/15 text-blue-400">
@@ -75,19 +79,19 @@ export function LegalRecommendation({
 
       {/* 2. Ready eOtinish Police Claim Template (Pitch Deck Promised Feature) */}
       {template && (
-        <div className="rounded-xl border border-blue-500/35 bg-surface p-4 flex flex-col gap-3.5 shadow-sm">
+        <div className="rounded-2xl border-2 border-blue-500/45 bg-surface p-4 flex flex-col gap-3.5 shadow-[0_12px_36px_-24px_rgba(59,130,246,0.85)]">
           <div className="flex items-start justify-between gap-2">
             <div className="flex items-center gap-2">
               <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400">
                 <IconFileText size={16} />
               </span>
-              <div>
+              <div className="min-w-0">
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-bold text-foreground">
                     {locale === 'kk' ? '«e-Otinish» дайын арыз үлгісі' : 'Готовый шаблон заявления в «e-Otinish»'}
                   </span>
-                  <span className="px-1.5 py-0.5 rounded bg-blue-500/15 text-[10px] font-bold text-blue-400 border border-blue-500/30">
-                    CyberPol · {locale === 'kk' ? 'ҚР ҚК 190' : 'ст. 190 УК'}
+                  <span className="shrink-0 px-1.5 py-0.5 rounded bg-blue-500/15 text-[10px] font-bold text-blue-400 border border-blue-500/30">
+                    {locale === 'kk' ? 'ДАЙЫН' : 'ГОТОВО'}
                   </span>
                 </div>
                 <p className="text-[11px] text-muted-foreground mt-0.5">
@@ -123,6 +127,26 @@ export function LegalRecommendation({
             </div>
           </div>
 
+          <div className="rounded-xl border border-blue-500/20 bg-blue-500/[0.06] p-3">
+            <span className="text-[10px] uppercase font-bold text-blue-400">
+              {locale === 'kk' ? 'Өтініш тақырыбы' : 'Тема обращения'}
+            </span>
+            <p className="mt-1 text-xs font-semibold leading-relaxed text-foreground">
+              {templateLang === 'ru' ? template.subject_ru || template.subject : template.subject}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setShowFullTemplate((current) => !current)}
+            className="flex w-full items-center justify-between rounded-xl border border-border bg-surface-raised px-3 py-2.5 text-left text-xs font-bold text-foreground transition-colors hover:border-blue-500/40"
+            aria-expanded={showFullTemplate}
+          >
+            <span>{locale === 'kk' ? 'Арыздың толық мәтіні' : 'Полный текст заявления'}</span>
+            {showFullTemplate ? <IconChevronUp size={17} /> : <IconChevronDown size={17} />}
+          </button>
+
+          {showFullTemplate && <>
           {/* Legal Meta Pills */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
             <div className="p-2 rounded-lg bg-surface-raised border border-border/80">
@@ -144,9 +168,10 @@ export function LegalRecommendation({
           </div>
 
           {/* Template Content Box */}
-          <div className="relative rounded-lg border border-border bg-black/40 p-3 text-[11px] font-mono leading-relaxed text-foreground/90 max-h-56 overflow-y-auto whitespace-pre-wrap select-all">
+          <div className="relative rounded-xl border border-border bg-surface-raised p-3 text-[11px] leading-relaxed text-foreground/90 max-h-72 overflow-y-auto whitespace-pre-wrap select-all">
             {templateText}
           </div>
+          </>}
 
           {/* Action Buttons: Copy & Go to eOtinish */}
           <div className="flex flex-wrap items-center gap-2 pt-1">
@@ -198,10 +223,37 @@ export function LegalRecommendation({
         </div>
       )}
 
+      {recommendation.document_explanation && (
+        <div className="rounded-xl border border-border bg-surface px-3.5 py-3">
+          <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+            {locale === 'kk' ? 'Құжат пен жағдайды түсіндіру' : 'Разъяснение документа и ситуации'}
+          </p>
+          <p className="mt-1.5 text-xs leading-relaxed text-foreground/90">
+            {recommendation.document_explanation}
+          </p>
+        </div>
+      )}
+
+      {importantPoints.length > 0 && (
+        <div className="rounded-xl border border-amber-500/20 bg-amber-500/[0.05] p-3.5">
+          <p className="text-[11px] font-bold uppercase tracking-wider text-amber-500">
+            {locale === 'kk' ? 'Маңызды құқықтық тұстар' : 'Важные правовые моменты'}
+          </p>
+          <ul className="mt-2 grid gap-2 text-xs leading-relaxed text-foreground/90">
+            {importantPoints.map((point, index) => (
+              <li key={`${index}-${point}`} className="flex gap-2">
+                <IconCheck size={15} className="mt-0.5 shrink-0 text-amber-500" aria-hidden="true" />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {/* 3. Recommended Steps */}
-      {recommendation.recommended_steps.length > 0 && (
+      {recommendedSteps.length > 0 && (
         <ol className="grid gap-2 border-t border-blue-500/15 pt-3 text-xs leading-relaxed text-foreground/90">
-          {recommendation.recommended_steps.map((step, index) => (
+          {recommendedSteps.map((step, index) => (
             <li key={`${index}-${step}`} className="flex gap-2.5">
               <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-500/15 font-mono text-[10px] font-bold text-blue-400">
                 {index + 1}
@@ -213,12 +265,12 @@ export function LegalRecommendation({
       )}
 
       {/* 4. Official Resources Directory Contacts */}
-      {recommendation.official_resources.length > 0 && (
+      {officialResources.length > 0 && (
         <div className="grid gap-2 border-t border-blue-500/15 pt-3">
           <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
             {locale === 'kk' ? 'Ресми байланыс арналары' : 'Официальные каналы связи'}
           </p>
-          {recommendation.official_resources.map((resource) => (
+          {officialResources.map((resource) => (
             <div key={`${resource.name}-${resource.contact}`} className="rounded-xl border border-border bg-surface p-3">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
@@ -252,9 +304,11 @@ export function LegalRecommendation({
       )}
 
       {/* 5. Legal Disclaimer */}
-      <p className="border-t border-blue-500/15 pt-2.5 text-[10px] leading-relaxed text-muted-foreground">
-        {recommendation.disclaimer}
-      </p>
+      {recommendation.disclaimer && (
+        <p className="border-t border-blue-500/15 pt-2.5 text-[10px] leading-relaxed text-muted-foreground">
+          {recommendation.disclaimer}
+        </p>
+      )}
     </section>
   );
 }

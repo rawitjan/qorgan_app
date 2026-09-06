@@ -186,6 +186,17 @@ export function LensResultJunior({
         </div>
       </div>
 
+      {scan.recommendation && (
+        <div className="rounded-2xl border border-blue-500/25 bg-blue-500/[0.06] p-4">
+          <p className="text-xs font-bold uppercase tracking-wider text-blue-400">
+            {locale === 'kk' ? 'QORGAN кеңесі' : 'Совет QORGAN'}
+          </p>
+          <p className="mt-2 whitespace-pre-line text-xs leading-relaxed text-foreground/90">
+            {scan.recommendation}
+          </p>
+        </div>
+      )}
+
       {scan.legal_recommendation && (
         <LegalRecommendation recommendation={scan.legal_recommendation} />
       )}

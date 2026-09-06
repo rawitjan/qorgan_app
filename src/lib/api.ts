@@ -1,4 +1,10 @@
-import type { LensInputType, LensScan } from "@/types";
+import type {
+  EotinishTemplate,
+  LegalRecommendation,
+  LensInputType,
+  LensScan,
+  OfficialLegalResource,
+} from "@/types";
 
 type ApiErrorBody = {
   message?: string;
@@ -160,6 +166,109 @@ type LensScanCollectionResponse = {
   data: LensScan[];
 };
 
+function asRecord(value: unknown): Record<string, unknown> | null {
+  if (typeof value === "string") {
+    try {
+      return asRecord(JSON.parse(value));
+    } catch {
+      return null;
+    }
+  }
+
+  return value !== null && typeof value === "object" && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : null;
+}
+
+function asString(value: unknown, fallback = ""): string {
+  return typeof value === "string" ? value : fallback;
+}
+
+function asStringArray(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === "string" && item.trim().length > 0)
+    : [];
+}
+
+function normalizeEotinishTemplate(value: unknown): EotinishTemplate | null {
+  const data = asRecord(value);
+  if (!data) return null;
+
+  const bodyKz = asString(data.body_kz ?? data.bodyKz);
+  const bodyRu = asString(data.body_ru ?? data.bodyRu);
+  if (!bodyKz && !bodyRu) return null;
+
+  return {
+    article: asString(data.article),
+    article_ru: asString(data.article_ru ?? data.articleRu) || undefined,
+    authority: asString(data.authority),
+    authority_ru: asString(data.authority_ru ?? data.authorityRu) || undefined,
+    subject: asString(data.subject),
+    subject_ru: asString(data.subject_ru ?? data.subjectRu) || undefined,
+    portal_url: asString(data.portal_url ?? data.portalUrl, "https://eotinish.kz"),
+    body_kz: bodyKz || bodyRu,
+    body_ru: bodyRu || bodyKz,
+  };
+}
+
+function normalizeOfficialResources(value: unknown): OfficialLegalResource[] {
+  if (!Array.isArray(value)) return [];
+
+  return value.flatMap((item) => {
+    const data = asRecord(item);
+    if (!data) return [];
+
+    return [{
+      name: asString(data.name),
+      contact: asString(data.contact),
+      type: asString(data.type),
+      description: asString(data.description),
+      url: asString(data.url) || null,
+      is_emergency: Boolean(data.is_emergency ?? data.isEmergency),
+    }];
+  });
+}
+
+function normalizeLegalRecommendation(value: unknown): LegalRecommendation | null {
+  const data = asRecord(value);
+  if (!data) return null;
+
+  const template = normalizeEotinishTemplate(
+    data.eotinish_template ?? data.eOtinishTemplate ?? data.e_otinish_template
+  );
+
+  return {
+    title: asString(data.title),
+    situation_explanation: asString(data.situation_explanation ?? data.situationExplanation),
+    document_explanation:
+      asString(data.document_explanation ?? data.documentExplanation) || undefined,
+    important_points: asStringArray(
+      data.important_points ?? data.importantPoints ?? data.potentially_important_clauses
+    ),
+    recommended_steps: asStringArray(
+      data.recommended_steps ?? data.recommendedSteps ?? data.general_next_steps
+    ),
+    official_resources: normalizeOfficialResources(
+      data.official_resources ?? data.officialResources
+    ),
+    disclaimer: asString(data.disclaimer),
+    eotinish_template: template,
+  };
+}
+
+function normalizeLensScan(scan: LensScan): LensScan {
+  const raw = scan as LensScan & Record<string, unknown>;
+
+  return {
+    ...scan,
+    legal_recommendation: normalizeLegalRecommendation(
+      raw.legal_recommendation ?? raw.legalRecommendation
+    ),
+    findings: Array.isArray(scan.findings) ? scan.findings : [],
+    signals: Array.isArray(scan.signals) ? scan.signals : [],
+  };
+}
+
 export function createLensScan(
   token: string,
   payload: {
@@ -193,7 +302,7 @@ export async function getLensScan(
     signal,
   });
 
-  return response.data;
+  return normalizeLensScan(response.data);
 }
 
 export async function listLensScans(token: string, signal?: AbortSignal): Promise<LensScan[]> {
@@ -202,5 +311,5 @@ export async function listLensScans(token: string, signal?: AbortSignal): Promis
     signal,
   });
 
-  return response.data;
+  return response.data.map(normalizeLensScan);
 }

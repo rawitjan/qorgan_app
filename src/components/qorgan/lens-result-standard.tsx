@@ -38,6 +38,32 @@ export function LensResultStandard({
   const riskLevel = normalizeRiskLevel(scan.risk_level, score);
   const isHighRisk = riskLevel === 'CRITICAL' || riskLevel === 'HIGH' || score >= 50;
   const isModerate = riskLevel === 'MODERATE' || (score >= 25 && score < 50);
+  const apiRecommendedActions = (scan.recommendation ?? '')
+    .split(/\r?\n/)
+    .map((action) => action.replace(/^\s*\d+[.)]\s*/, '').trim())
+    .filter(Boolean);
+  const fallbackActions = isHighRisk || isModerate
+    ? locale === 'kk'
+      ? [
+          'Сілтемені дереу жауып, ешқандай дерек немесе SMS код енгізбеңіз.',
+          'Деректер енгізілсе, банк картасын бұғаттап, құпиясөздерді ауыстырыңыз.',
+          'Дәлелдерді сақтап, төмендегі дайын үлгі арқылы ресми өтініш жіберіңіз.',
+        ]
+      : [
+          'Закройте ресурс и не вводите данные или SMS-коды.',
+          'Если данные введены, заблокируйте карту и смените пароли.',
+          'Сохраните доказательства и отправьте обращение по готовому шаблону ниже.',
+        ]
+    : locale === 'kk'
+      ? [
+          'Ресурсты қауіпсіз пайдалануға болады, бірақ құпия деректерді бермеңіз.',
+          'Күмәнді сұраныс пайда болса, QORGAN Lens арқылы қайта тексеріңіз.',
+        ]
+      : [
+          'Ресурс можно использовать, но не передавайте конфиденциальные данные.',
+          'При подозрительном запросе повторите проверку через QORGAN Lens.',
+        ];
+  const recommendedActions = apiRecommendedActions.length > 0 ? apiRecommendedActions : fallbackActions;
 
   const recommendedMission: Scenario = {
     id: 101,
@@ -168,61 +194,16 @@ export function LensResultStandard({
           <span>{locale === 'kk' ? 'Ұсынылатын іс-қимылдар' : 'Рекомендуемые действия'}</span>
         </div>
 
-        {isHighRisk || isModerate ? (
-          <ol className="flex flex-col gap-2 text-xs text-muted-foreground list-decimal list-inside leading-relaxed">
-            <li>
-              <strong className="text-foreground">
-                {locale === 'kk' ? 'Сілтемені дереу жабыңыз: ' : 'Закройте ресурс: '}
-              </strong>
-              {locale === 'kk'
-                ? 'Ешқандай деректі, телефон нөмірін немесе SMS кодты енгізбеңіз.'
-                : 'Ни в коем случае не вводите номера телефонов, пароли или SMS-коды.'}
+        <ol className="flex flex-col gap-2 text-xs text-muted-foreground leading-relaxed">
+          {recommendedActions.map((action, index) => (
+            <li key={`${index}-${action}`} className="flex items-start gap-2.5">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/12 font-mono text-[10px] font-bold text-primary">
+                {index + 1}
+              </span>
+              <span className="pt-0.5 text-foreground/90">{action}</span>
             </li>
-            <li>
-              <strong className="text-foreground">
-                {locale === 'kk' ? 'Картаны бұғаттау: ' : 'Блокировка карты: '}
-              </strong>
-              {locale === 'kk'
-                ? 'Егер деректер енгізіліп қойса, банк қосымшасында (Kaspi, Halyk) картаны бұғаттап, қолдау қызметіне хабарласыңыз.'
-                : 'Если данные уже введены, немедленно заблокируйте карту в приложении банка.'}
-            </li>
-            <li>
-              <strong className="text-foreground">
-                {locale === 'kk' ? 'Нөмірді бұғаттау және eOtinish: ' : 'Блокировка и eOtinish: '}
-              </strong>
-              {locale === 'kk'
-                ? 'Хабарлама келген нөмірді бұғаттап, төмендегі дайын арыз үлгісімен Киберполға шағым жолдаңыз.'
-                : 'Заблокируйте номер отправителя и подайте официальное заявление в Киберпол через eOtinish.'}
-            </li>
-          </ol>
-        ) : (
-          <ol className="flex flex-col gap-2 text-xs text-muted-foreground list-decimal list-inside leading-relaxed">
-            <li>
-              <strong className="text-foreground">
-                {locale === 'kk' ? 'Қауіпсіз пайдалану: ' : 'Безопасное использование: '}
-              </strong>
-              {locale === 'kk'
-                ? 'Ресурс қауіпсіздік тексеруінен сәтті өтті, оны алаңдамай пайдалана аласыз.'
-                : 'Ресурс успешно прошел проверку безопасности, вы можете им пользоваться.'}
-            </li>
-            <li>
-              <strong className="text-foreground">
-                {locale === 'kk' ? 'Цифрлық сақтық: ' : 'Цифровая гигиена: '}
-              </strong>
-              {locale === 'kk'
-                ? 'Тіпті ресми сайттардың өзінде де SMS растау кодтары мен жеке құпиясөздерді ешкімге бермеңіз.'
-                : 'Даже на официальных сайтах никогда не передавайте третьим лицам разовые SMS-коды.'}
-            </li>
-            <li>
-              <strong className="text-foreground">
-                {locale === 'kk' ? 'Күдік туындаған жағдайда: ' : 'При сомнениях: '}
-              </strong>
-              {locale === 'kk'
-                ? 'Егер ресурс күмәнді төлем немесе картаның CVV кодын талап етсе, QORGAN Lens арқылы қайта тексеріңіз.'
-                : 'Если ресурс запросит реквизиты карты (CVV) или подозрительные платежи, повторите проверку.'}
-            </li>
-          </ol>
-        )}
+          ))}
+        </ol>
       </div>
 
       {scan.legal_recommendation && (
