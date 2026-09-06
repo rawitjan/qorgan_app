@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import {
   IconChevronLeft,
   IconChevronRight,
@@ -23,7 +22,6 @@ import { PITCH_SLIDES, PitchLang } from './pitch-slides';
 import { cn } from '@/lib/utils';
 
 export function PitchDeck() {
-  const router = useRouter();
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isGridMode, setIsGridMode] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -199,7 +197,7 @@ export function PitchDeck() {
     >
       {/* 16:9 Presentation Stage */}
       <div className="relative w-full h-full max-w-[1920px] max-h-[1080px] aspect-video bg-[#ebeae5] shadow-2xl flex flex-col overflow-hidden sm:rounded-none lg:border lg:border-white/10">
-        <CurrentSlideComponent lang={lang} onLaunchDemo={handleLaunchDemo} />
+        <CurrentSlideComponent lang={lang} />
       </div>
 
       {/* Floating HUD / Controls Dock or Discreet Trigger Button */}
@@ -499,7 +497,7 @@ export function PitchDeck() {
               className="w-[100vw] h-[100vh] page-break-after-always overflow-hidden"
               style={{ breakAfter: 'page', pageBreakAfter: 'always' }}
             >
-              <SlideComp lang={lang} onLaunchDemo={handleLaunchDemo} />
+              <SlideComp lang={lang} />
             </div>
           );
         })}
