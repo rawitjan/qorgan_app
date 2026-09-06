@@ -113,6 +113,7 @@ export function me(token: string) {
 }
 
 const ACCESS_TOKEN_STORAGE_KEY = "qorgan_access_token";
+const ACCESS_TOKEN_EMAIL_STORAGE_KEY = "qorgan_access_token_email";
 const DEMO_EMAIL_STORAGE_KEY = "qorgan_demo_email";
 const DEFAULT_DEMO_EMAIL = "standard@qorgan.kz";
 export const DEMO_ACCOUNT_CHANGED_EVENT = "qorgan:demo-account-changed";
@@ -125,6 +126,7 @@ export function selectDemoAccountForApi(email: string): void {
 
   if (previousEmail !== email) {
     window.localStorage.removeItem(ACCESS_TOKEN_STORAGE_KEY);
+    window.localStorage.removeItem(ACCESS_TOKEN_EMAIL_STORAGE_KEY);
     window.dispatchEvent(new Event(DEMO_ACCOUNT_CHANGED_EVENT));
   }
 }
@@ -136,12 +138,14 @@ export async function getAccessToken(forceRefresh = false): Promise<string> {
 
   if (forceRefresh) {
     window.localStorage.removeItem(ACCESS_TOKEN_STORAGE_KEY);
+    window.localStorage.removeItem(ACCESS_TOKEN_EMAIL_STORAGE_KEY);
   }
 
-  const savedToken = window.localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY);
-  if (savedToken) return savedToken;
-
   const email = window.localStorage.getItem(DEMO_EMAIL_STORAGE_KEY) ?? DEFAULT_DEMO_EMAIL;
+  const savedToken = window.localStorage.getItem(ACCESS_TOKEN_STORAGE_KEY);
+  const savedTokenEmail = window.localStorage.getItem(ACCESS_TOKEN_EMAIL_STORAGE_KEY);
+  if (savedToken && savedTokenEmail === email) return savedToken;
+
   const response = await login({
     email,
     password: process.env.NEXT_PUBLIC_DEMO_PASSWORD ?? "password",
@@ -149,6 +153,7 @@ export async function getAccessToken(forceRefresh = false): Promise<string> {
   });
   const token = response.data.token;
   window.localStorage.setItem(ACCESS_TOKEN_STORAGE_KEY, token);
+  window.localStorage.setItem(ACCESS_TOKEN_EMAIL_STORAGE_KEY, email);
 
   return token;
 }
