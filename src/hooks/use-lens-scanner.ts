@@ -22,7 +22,7 @@ import { useMode } from '@/context/mode-context';
 import { normalizeRiskLevel } from '@/lib/utils';
 
 const POLL_INTERVAL_MS = 1_200;
-const SCAN_TIMEOUT_MS = 150_000;
+const SCAN_TIMEOUT_MS = 240_000;
 
 function toScannerStage(status: LensScan['status']): LensScanStage {
   return status === 'pending' ? 'preparing' : status;
