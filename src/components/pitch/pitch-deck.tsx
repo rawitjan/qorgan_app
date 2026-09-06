@@ -63,10 +63,6 @@ export function PitchDeck() {
     setLang((prev) => (prev === 'kk' ? 'ru' : 'kk'));
   }, []);
 
-  const handleLaunchDemo = useCallback(() => {
-    router.push('/');
-  }, [router]);
-
   // Keyboard Navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
