@@ -109,15 +109,39 @@ export function LensResultStandard({
       </div>
 
       {/* 2. "Why" Forensic Explanation */}
-      <div className="p-4 rounded-xl border border-border bg-surface flex flex-col gap-2">
-        <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-muted-foreground">
-          <IconInfoCircle size={15} className="text-primary" />
-          <span>{locale === 'kk' ? 'Неліктен бұл қауіпті? (Себебі)' : 'Почему это опасно? (Причина)'}</span>
+      <div
+        className={cn(
+          'p-4 rounded-xl border flex flex-col gap-2',
+          isHighRisk || isModerate
+            ? 'border-red-500/20 bg-surface'
+            : 'border-emerald-500/20 bg-emerald-500/[0.04]'
+        )}
+      >
+        <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider">
+          {isHighRisk || isModerate ? (
+            <>
+              <IconInfoCircle size={15} className="text-red-400" />
+              <span className="text-red-400">
+                {locale === 'kk' ? 'Неліктен бұл қауіпті? (Себебі)' : 'Почему это опасно? (Причина)'}
+              </span>
+            </>
+          ) : (
+            <>
+              <IconShieldCheck size={16} className="text-emerald-400" />
+              <span className="text-emerald-400">
+                {locale === 'kk' ? 'Қауіпсіздік расталды (Талдау нәтижесі)' : 'Безопасность подтверждена'}
+              </span>
+            </>
+          )}
         </div>
         <p className="text-xs text-foreground/90 leading-relaxed">
-          {locale === 'kk'
-            ? 'Сайт домені ресми мекемелермен байланыссыз. Қолданушының банк картасы деректерін, CVV кодын және 3D-Secure SMS растау кодын жасырын тартып алуға бағытталған фишингтік скрипттер тіркелді.'
-            : 'Домен не принадлежит официальным ведомствам. Зафиксированы фишинговые сценарии для перехвата реквизитов карты, CVV-кода и разовых 3D-Secure SMS-паролей.'}
+          {isHighRisk || isModerate
+            ? locale === 'kk'
+              ? 'Сайт домені ресми мекемелермен байланыссыз немесе күдікті сценарийлер тіркелді. Қолданушының банк картасы деректерін, құпиясөздерді немесе SMS растау кодтарын жасырын тартып алу белгілері анықталды.'
+              : 'Домен не принадлежит официальным ведомствам или зафиксированы подозрительные сценарии. Выявлены признаки попытки перехвата конфиденциальных реквизитов карты или SMS-кодов.'
+            : locale === 'kk'
+            ? 'Тексерілген интернет-ресурс қауіпсіз. Фишингтік белгілер, жалған банк беттері, спам немесе зиянды скрипттер табылған жоқ. Сілтемені еркін пайдалануға болады.'
+            : 'Проверенный интернет-ресурс безопасен. Признаков фишинга, поддельных страниц банков, спама или вредоносных скриптов не обнаружено. Ссылкой можно безопасно пользоваться.'}
         </p>
       </div>
 
@@ -140,36 +164,65 @@ export function LensResultStandard({
       {/* 4. Prioritized Recommended Actions */}
       <div className="p-4 rounded-xl border border-border bg-surface flex flex-col gap-3">
         <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-foreground">
-          <IconShieldCheck size={16} className="text-primary" />
+          <IconShieldCheck size={16} className={isHighRisk || isModerate ? 'text-primary' : 'text-emerald-400'} />
           <span>{locale === 'kk' ? 'Ұсынылатын іс-қимылдар' : 'Рекомендуемые действия'}</span>
         </div>
 
-        <ol className="flex flex-col gap-2 text-xs text-muted-foreground list-decimal list-inside leading-relaxed">
-          <li>
-            <strong className="text-foreground">
-              {locale === 'kk' ? 'Сілтемені дереу жабыңыз: ' : 'Закройте ресурс: '}
-            </strong>
-            {locale === 'kk'
-              ? 'Ешқандай деректі, телефон нөмірін немесе SMS кодты енгізбеңіз.'
-              : 'Ни в коем случае не вводите номера телефонов, пароли или SMS-коды.'}
-          </li>
-          <li>
-            <strong className="text-foreground">
-              {locale === 'kk' ? 'Картаны бұғаттау: ' : 'Блокировка карты: '}
-            </strong>
-            {locale === 'kk'
-              ? 'Егер деректер енгізіліп қойса, банк қосымшасында (Kaspi, Halyk) картаны бұғаттап, қолдау қызметіне хабарласыңыз.'
-              : 'Если данные уже введены, немедленно заблокируйте карту в приложении банка.'}
-          </li>
-          <li>
-            <strong className="text-foreground">
-              {locale === 'kk' ? 'Нөмірді бұғаттау: ' : 'Блокировка отправителя: '}
-            </strong>
-            {locale === 'kk'
-              ? 'Хабарлама келген WhatsApp/SMS нөмірін спам ретінде белгілеңіз.'
-              : 'Пометьте номер отправителя как спам и заблокируйте.'}
-          </li>
-        </ol>
+        {isHighRisk || isModerate ? (
+          <ol className="flex flex-col gap-2 text-xs text-muted-foreground list-decimal list-inside leading-relaxed">
+            <li>
+              <strong className="text-foreground">
+                {locale === 'kk' ? 'Сілтемені дереу жабыңыз: ' : 'Закройте ресурс: '}
+              </strong>
+              {locale === 'kk'
+                ? 'Ешқандай деректі, телефон нөмірін немесе SMS кодты енгізбеңіз.'
+                : 'Ни в коем случае не вводите номера телефонов, пароли или SMS-коды.'}
+            </li>
+            <li>
+              <strong className="text-foreground">
+                {locale === 'kk' ? 'Картаны бұғаттау: ' : 'Блокировка карты: '}
+              </strong>
+              {locale === 'kk'
+                ? 'Егер деректер енгізіліп қойса, банк қосымшасында (Kaspi, Halyk) картаны бұғаттап, қолдау қызметіне хабарласыңыз.'
+                : 'Если данные уже введены, немедленно заблокируйте карту в приложении банка.'}
+            </li>
+            <li>
+              <strong className="text-foreground">
+                {locale === 'kk' ? 'Нөмірді бұғаттау және eOtinish: ' : 'Блокировка и eOtinish: '}
+              </strong>
+              {locale === 'kk'
+                ? 'Хабарлама келген нөмірді бұғаттап, төмендегі дайын арыз үлгісімен Киберполға шағым жолдаңыз.'
+                : 'Заблокируйте номер отправителя и подайте официальное заявление в Киберпол через eOtinish.'}
+            </li>
+          </ol>
+        ) : (
+          <ol className="flex flex-col gap-2 text-xs text-muted-foreground list-decimal list-inside leading-relaxed">
+            <li>
+              <strong className="text-foreground">
+                {locale === 'kk' ? 'Қауіпсіз пайдалану: ' : 'Безопасное использование: '}
+              </strong>
+              {locale === 'kk'
+                ? 'Ресурс қауіпсіздік тексеруінен сәтті өтті, оны алаңдамай пайдалана аласыз.'
+                : 'Ресурс успешно прошел проверку безопасности, вы можете им пользоваться.'}
+            </li>
+            <li>
+              <strong className="text-foreground">
+                {locale === 'kk' ? 'Цифрлық сақтық: ' : 'Цифровая гигиена: '}
+              </strong>
+              {locale === 'kk'
+                ? 'Тіпті ресми сайттардың өзінде де SMS растау кодтары мен жеке құпиясөздерді ешкімге бермеңіз.'
+                : 'Даже на официальных сайтах никогда не передавайте третьим лицам разовые SMS-коды.'}
+            </li>
+            <li>
+              <strong className="text-foreground">
+                {locale === 'kk' ? 'Күдік туындаған жағдайда: ' : 'При сомнениях: '}
+              </strong>
+              {locale === 'kk'
+                ? 'Егер ресурс күмәнді төлем немесе картаның CVV кодын талап етсе, QORGAN Lens арқылы қайта тексеріңіз.'
+                : 'Если ресурс запросит реквизиты карты (CVV) или подозрительные платежи, повторите проверку.'}
+            </li>
+          </ol>
+        )}
       </div>
 
       {scan.legal_recommendation && (

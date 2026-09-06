@@ -86,6 +86,18 @@ export type OfficialLegalResource = {
   is_emergency: boolean;
 };
 
+export type EotinishTemplate = {
+  article: string;
+  article_ru?: string;
+  authority: string;
+  authority_ru?: string;
+  subject: string;
+  subject_ru?: string;
+  portal_url: string;
+  body_kz: string;
+  body_ru: string;
+};
+
 export type LegalRecommendation = {
   title: string;
   situation_explanation: string;
@@ -94,6 +106,7 @@ export type LegalRecommendation = {
   recommended_steps: string[];
   official_resources: OfficialLegalResource[];
   disclaimer: string;
+  eotinish_template?: EotinishTemplate | null;
 };
 
 export type LensScan = {

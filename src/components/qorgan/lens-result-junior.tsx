@@ -9,6 +9,7 @@ import {
   IconLink,
   IconRefresh,
   IconShield,
+  IconShieldCheck,
   IconUserCheck,
 } from '@tabler/icons-react';
 import { MascotMessage } from '@/components/qorgan/emergency-alert';
@@ -34,6 +35,7 @@ export function LensResultJunior({
   const score = scan.risk_score ?? (scan.risk_level ? 0 : 87);
   const riskLevel = normalizeRiskLevel(scan.risk_level, score);
   const isHighRisk = riskLevel === 'CRITICAL' || riskLevel === 'HIGH' || score >= 50;
+  const isModerate = riskLevel === 'MODERATE' || (score >= 30 && score < 50);
   const simpleFindings = (scan.findings ?? []).slice(0, 3);
   const findingIcons = [IconKey, IconLink, IconClock];
 
@@ -138,24 +140,49 @@ export function LensResultJunior({
         </span>
 
         <div className="flex flex-col gap-2.5">
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-red-950/20 border border-red-500/30 text-xs font-bold text-red-200">
-            <IconKey size={19} className="shrink-0" aria-hidden="true" />
-            <span>{locale === 'kk' ? 'Кодты берме' : 'Не отдавай код'}</span>
-          </div>
+          {isHighRisk || isModerate ? (
+            <>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-red-950/20 border border-red-500/30 text-xs font-bold text-red-200">
+                <IconKey size={19} className="shrink-0" aria-hidden="true" />
+                <span>{locale === 'kk' ? 'Кодты берме' : 'Не отдавай код'}</span>
+              </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-red-950/20 border border-red-500/30 text-xs font-bold text-red-200">
-            <IconBan size={19} className="shrink-0" aria-hidden="true" />
-            <span>{locale === 'kk' ? 'Сілтемені ашпа' : 'Не открывай ссылку'}</span>
-          </div>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-red-950/20 border border-red-500/30 text-xs font-bold text-red-200">
+                <IconBan size={19} className="shrink-0" aria-hidden="true" />
+                <span>{locale === 'kk' ? 'Сілтемені ашпа' : 'Не открывай ссылку'}</span>
+              </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30 text-xs font-bold text-emerald-300">
-            <IconUserCheck size={19} className="shrink-0" aria-hidden="true" />
-            <span>
-              {locale === 'kk'
-                ? 'Сенетін ересек адамға көрсет'
-                : 'Покажи взрослому, которому доверяешь'}
-            </span>
-          </div>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30 text-xs font-bold text-emerald-300">
+                <IconUserCheck size={19} className="shrink-0" aria-hidden="true" />
+                <span>
+                  {locale === 'kk'
+                    ? 'Сенетін ересек адамға көрсет'
+                    : 'Покажи взрослому, которому доверяешь'}
+                </span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30 text-xs font-bold text-emerald-300">
+                <IconShieldCheck size={19} className="shrink-0 text-emerald-400" aria-hidden="true" />
+                <span>{locale === 'kk' ? 'Сілтеме қауіпсіз, аша беруге болады' : 'Ссылка безопасна, можно открывать'}</span>
+              </div>
+
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-blue-950/20 border border-blue-500/30 text-xs font-bold text-blue-200">
+                <IconKey size={19} className="shrink-0 text-blue-400" aria-hidden="true" />
+                <span>{locale === 'kk' ? 'Бірақ ереже: SMS кодты ешкімге айтпа' : 'Но помни: никому не говори SMS-код'}</span>
+              </div>
+
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-surface-raised border border-border text-xs font-bold text-foreground">
+                <IconUserCheck size={19} className="shrink-0 text-primary" aria-hidden="true" />
+                <span>
+                  {locale === 'kk'
+                    ? 'Күмәндансаң, әрқашан үлкендерден сұра'
+                    : 'Если сомневаешься, всегда спроси у взрослых'}
+                </span>
+              </div>
+            </>
+          )}
         </div>
       </div>
 
