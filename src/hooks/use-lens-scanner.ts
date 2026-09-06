@@ -121,8 +121,18 @@ export function useLensScanner() {
 
   const refreshHistory = useCallback(
     async (signal?: AbortSignal) => {
-      const token = await getAccessToken();
-      const scans = await listLensScans(token, signal);
+      let token = await getAccessToken();
+      let scans: LensScan[];
+
+      try {
+        scans = await listLensScans(token, signal);
+      } catch (error) {
+        if (!(error instanceof ApiError) || error.status !== 401) throw error;
+
+        token = await getAccessToken(true);
+        scans = await listLensScans(token, signal);
+      }
+
       setHistory(
         scans
           .filter((scan) => scan.status === 'completed')
@@ -289,8 +299,18 @@ export function useLensScanner() {
       setFailureReason(null);
 
       try {
-        const token = await getAccessToken();
-        const scan = await getLensScan(token, Number(item.id), controller.signal);
+        let token = await getAccessToken();
+        let scan: LensScan;
+
+        try {
+          scan = await getLensScan(token, Number(item.id), controller.signal);
+        } catch (error) {
+          if (!(error instanceof ApiError) || error.status !== 401) throw error;
+
+          token = await getAccessToken(true);
+          scan = await getLensScan(token, Number(item.id), controller.signal);
+        }
+
         setActiveScan(scan);
         setTechnicalDetails(toTechnicalDetails(scan, item.payload_preview));
         setStage(scan.status === 'failed' ? 'failed' : toScannerStage(scan.status));
