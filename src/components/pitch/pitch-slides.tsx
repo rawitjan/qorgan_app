@@ -630,8 +630,48 @@ export function Slide04TechPipeline({ lang = 'kk' }: { lang?: PitchLang }) {
           </div>
         </div>
 
+        {/* Deterministic Risk Engine Scoring Formula Banner */}
+        <div className="rounded-[20px] bg-gradient-to-r from-white to-slate-50 p-3 sm:p-3.5 border border-[#2775f6]/25 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 rounded bg-[#2775f6] text-white font-mono text-[10px] font-black uppercase">
+                {isKk ? "СКОРИНГ АЛГОРИТМІ" : "АЛГОРИТМ СКОРИНГА"}
+              </span>
+              <h5 className="font-black text-xs text-[#121620]">
+                {isKk ? "Deterministic Risk Engine: Неге AI галлюцинация жасамайды?" : "Deterministic Risk Engine: Защита от галлюцинаций AI"}
+              </h5>
+            </div>
+            <span className="font-mono font-black text-[#2775f6] text-xs bg-[#2775f6]/10 px-2.5 py-0.5 rounded-full">
+              Score = min(100, &sum; Signals)
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-[10px] font-mono">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-1.5 text-red-900">
+              <div className="font-black">+60 БАЛЛ</div>
+              <div className="text-[9px] opacity-80">{isKk ? "Зиянды URL (Threat Intel)" : "Вредоносный URL"}</div>
+            </div>
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-1.5 text-orange-900">
+              <div className="font-black">+40 БАЛЛ</div>
+              <div className="text-[9px] opacity-80">{isKk ? "Карта деректерін сұрау" : "Запрос данных карты"}</div>
+            </div>
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-1.5 text-amber-900">
+              <div className="font-black">+30 БАЛЛ</div>
+              <div className="text-[9px] opacity-80">{isKk ? "OTP/SMS кодын талап ету" : "Запрос OTP/SMS кода"}</div>
+            </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-1.5 text-blue-900">
+              <div className="font-black">+25 БАЛЛ</div>
+              <div className="text-[9px] opacity-80">{isKk ? "Брендті көшіру (Kaspi/eGov)" : "Имитация бренда"}</div>
+            </div>
+            <div className="bg-slate-100 border border-slate-200 rounded-lg p-1.5 text-slate-800 col-span-2 sm:col-span-1">
+              <div className="font-black">+10 БАЛЛ</div>
+              <div className="text-[9px] opacity-80">{isKk ? "Асықтыру / Қорқыту" : "Спешка / Запугивание"}</div>
+            </div>
+          </div>
+        </div>
+
         {/* Tech Pipeline Strip */}
-        <div className="rounded-[20px] bg-white p-3 border border-[#121620]/10 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold">
+        <div className="rounded-[20px] bg-white p-2.5 sm:p-3 border border-[#121620]/10 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold">
           <span className="font-mono text-[#121620] font-black text-[11px]">
             5 САТЫЛЫ AI ҚҰБЫР:
           </span>
