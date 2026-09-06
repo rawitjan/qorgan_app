@@ -18,8 +18,26 @@ export type RiskMeta = {
   icon: 'check-circle' | 'alert-triangle' | 'shield-alert' | 'alert-octagon';
 };
 
-export function getRiskMeta(level?: RiskLevel | null): RiskMeta {
-  switch (level) {
+export function normalizeRiskLevel(level?: string | null, score?: number | null): 'LOW' | 'MODERATE' | 'HIGH' | 'CRITICAL' {
+  const upper = (level ?? '').toUpperCase();
+  if (upper === 'CRITICAL') return 'CRITICAL';
+  if (upper === 'HIGH') return 'HIGH';
+  if (upper === 'MODERATE') return 'MODERATE';
+  if (upper === 'LOW') return 'LOW';
+
+  if (typeof score === 'number') {
+    if (score >= 75) return 'CRITICAL';
+    if (score >= 50) return 'HIGH';
+    if (score >= 25) return 'MODERATE';
+    return 'LOW';
+  }
+
+  return 'LOW';
+}
+
+export function getRiskMeta(level?: string | null, score?: number | null): RiskMeta {
+  const normalized = normalizeRiskLevel(level, score);
+  switch (normalized) {
     case 'CRITICAL':
       return {
         level: 'CRITICAL',

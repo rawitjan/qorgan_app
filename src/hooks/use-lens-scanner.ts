@@ -19,6 +19,7 @@ import {
   Locale,
 } from '@/types';
 import { useMode } from '@/context/mode-context';
+import { normalizeRiskLevel } from '@/lib/utils';
 
 const POLL_INTERVAL_MS = 1_200;
 const SCAN_TIMEOUT_MS = 150_000;
@@ -53,7 +54,7 @@ function toHistoryItem(scan: LensScan, locale: Locale): LensScanHistoryItem {
     input_type: scan.input_type,
     payload_preview: payloadPreview,
     risk_score: scan.risk_score ?? 0,
-    risk_level: scan.risk_level ?? 'LOW',
+    risk_level: normalizeRiskLevel(scan.risk_level, scan.risk_score),
     category: scan.category || 'unknown',
     summary_kk: summary,
     summary_ru: summary,

@@ -6,18 +6,21 @@ import {
   IconAlertOctagon,
 } from '@tabler/icons-react';
 import { RiskLevel } from '@/types';
-import { cn } from '@/lib/utils';
+import { cn, normalizeRiskLevel } from '@/lib/utils';
 
 export function RiskIcon({
   level,
+  score,
   className,
   size = 18,
 }: {
-  level?: RiskLevel | null;
+  level?: RiskLevel | string | null;
+  score?: number | null;
   className?: string;
   size?: number;
 }) {
-  switch (level) {
+  const norm = normalizeRiskLevel(level, score);
+  switch (norm) {
     case 'CRITICAL':
       return (
         <IconAlertOctagon

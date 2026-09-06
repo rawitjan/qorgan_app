@@ -16,7 +16,7 @@ import { LensScanHistoryItem } from '@/types';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useMode } from '@/context/mode-context';
-import { cn } from '@/lib/utils';
+import { cn, normalizeRiskLevel } from '@/lib/utils';
 
 export function LensHistory({
   history,
@@ -35,8 +35,9 @@ export function LensHistory({
   const [filter, setFilter] = useState<'all' | 'high_risk' | 'safe'>('all');
 
   const filtered = history.filter((item) => {
-    if (filter === 'high_risk') return item.risk_level === 'CRITICAL' || item.risk_level === 'HIGH';
-    if (filter === 'safe') return item.risk_level === 'LOW';
+    const level = normalizeRiskLevel(item.risk_level, item.risk_score);
+    if (filter === 'high_risk') return level === 'CRITICAL' || level === 'HIGH' || item.risk_score >= 50;
+    if (filter === 'safe') return level === 'LOW' && item.risk_score < 50;
     return true;
   });
 
@@ -132,7 +133,8 @@ export function LensHistory({
       ) : (
         <div className="flex flex-col gap-2">
           {filtered.map((item) => {
-            const isCritical = item.risk_level === 'CRITICAL' || item.risk_level === 'HIGH';
+            const itemLevel = normalizeRiskLevel(item.risk_level, item.risk_score);
+            const isCritical = itemLevel === 'CRITICAL' || itemLevel === 'HIGH' || item.risk_score >= 50;
             const summary = locale === 'kk' ? item.summary_kk : item.summary_ru;
 
             return (

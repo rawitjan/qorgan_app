@@ -16,7 +16,7 @@ import { MissionCard } from '@/components/qorgan/mission-card';
 import { Button } from '@/components/ui/button';
 import { LensScan, LensTechnicalDetails, Scenario } from '@/types';
 import { useMode } from '@/context/mode-context';
-import { cn } from '@/lib/utils';
+import { cn, normalizeRiskLevel } from '@/lib/utils';
 
 export function LensResultStandard({
   scan,
@@ -34,9 +34,10 @@ export function LensResultStandard({
   const { locale } = useMode();
   const [techOpen, setTechOpen] = useState(false);
 
-  const score = scan.risk_score ?? 87;
-  const riskLevel = scan.risk_level ?? 'CRITICAL';
-  const isHighRisk = riskLevel === 'CRITICAL' || riskLevel === 'HIGH';
+  const score = scan.risk_score ?? (scan.risk_level ? 0 : 87);
+  const riskLevel = normalizeRiskLevel(scan.risk_level, score);
+  const isHighRisk = riskLevel === 'CRITICAL' || riskLevel === 'HIGH' || score >= 50;
+  const isModerate = riskLevel === 'MODERATE' || (score >= 25 && score < 50);
 
   const recommendedMission: Scenario = {
     id: 101,
@@ -62,14 +63,23 @@ export function LensResultStandard({
       <div
         className={cn(
           'p-5 rounded-2xl border bg-surface flex flex-col gap-4 shadow-md',
-          isHighRisk ? 'border-red-500/40 bg-red-950/10' : 'border-emerald-500/40 bg-emerald-950/10'
+          isHighRisk
+            ? 'border-red-500/40 bg-red-950/10'
+            : isModerate
+            ? 'border-amber-500/40 bg-amber-950/10'
+            : 'border-emerald-500/40 bg-emerald-950/10'
         )}
       >
         <div className="flex items-center justify-between">
-          <RiskBadge level={riskLevel} size="default" />
+          <RiskBadge level={riskLevel} score={score} size="default" />
           <div className="flex items-center gap-1 font-mono text-xs font-bold text-muted-foreground">
             <span>RISK INDEX:</span>
-            <span className={cn('text-sm', isHighRisk ? 'text-red-400' : 'text-emerald-400')}>
+            <span
+              className={cn(
+                'text-sm',
+                isHighRisk ? 'text-red-400' : isModerate ? 'text-amber-400' : 'text-emerald-400'
+              )}
+            >
               {score} / 100
             </span>
           </div>
@@ -84,6 +94,10 @@ export function LensResultStandard({
               ? locale === 'kk'
                 ? 'Аса қауіпті нысан анықталды'
                 : 'Обнаружен опасный объект'
+              : isModerate
+              ? locale === 'kk'
+                ? 'Күдікті белгілер анықталды'
+                : 'Обнаружены подозрительные признаки'
               : locale === 'kk'
               ? 'Қауіп белгілері анықталған жоқ'
               : 'Угрозы не обнаружены'}

@@ -9,15 +9,17 @@ import { cn } from '@/lib/utils';
 
 export function RiskBadge({
   level = 'LOW',
+  score,
   className,
   size = 'default',
 }: {
-  level?: RiskLevel | null;
+  level?: RiskLevel | string | null;
+  score?: number | null;
   className?: string;
   size?: 'sm' | 'default' | 'lg';
 }) {
   const { locale } = useMode();
-  const meta = getRiskMeta(level);
+  const meta = getRiskMeta(level, score);
   const label = locale === 'kk' ? meta.label_kk : meta.label_ru;
 
   const sizeStyles = {
@@ -35,7 +37,7 @@ export function RiskBadge({
         className
       )}
     >
-      <RiskIcon level={level} size={size === 'sm' ? 14 : size === 'lg' ? 18 : 15} />
+      <RiskIcon level={meta.level} score={score} size={size === 'sm' ? 14 : size === 'lg' ? 18 : 15} />
       <span>{label}</span>
     </div>
   );

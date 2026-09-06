@@ -24,7 +24,11 @@ export function LegalRecommendation({
           <p className="text-xs font-bold uppercase tracking-wider text-blue-400">
             {locale === 'kk' ? 'Құқықтық навигация' : 'Правовая навигация'}
           </p>
-          <h3 className="mt-0.5 text-sm font-bold text-foreground">{recommendation.title}</h3>
+          <h3 className="mt-0.5 text-sm font-bold text-foreground">
+            {locale === 'kk' && (!recommendation.title || recommendation.title === 'Правовая рекомендация')
+              ? 'Құқықтық ұсыным'
+              : recommendation.title || (locale === 'kk' ? 'Құқықтық ұсыным' : 'Правовая рекомендация')}
+          </h3>
           <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
             {recommendation.situation_explanation}
           </p>

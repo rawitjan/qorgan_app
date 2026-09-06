@@ -63,7 +63,7 @@ export type LensStatus =
   | 'completed'
   | 'failed';
 
-export type RiskLevel = 'LOW' | 'MODERATE' | 'HIGH' | 'CRITICAL';
+export type RiskLevel = 'LOW' | 'MODERATE' | 'HIGH' | 'CRITICAL' | 'low' | 'moderate' | 'high' | 'critical';
 
 export type LensFinding = {
   id: number;

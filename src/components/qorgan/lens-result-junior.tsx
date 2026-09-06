@@ -17,7 +17,7 @@ import { LegalRecommendation } from '@/components/qorgan/legal-recommendation';
 import { Button } from '@/components/ui/button';
 import { LensScan, Scenario } from '@/types';
 import { useMode } from '@/context/mode-context';
-import { cn } from '@/lib/utils';
+import { cn, normalizeRiskLevel } from '@/lib/utils';
 
 export function LensResultJunior({
   scan,
@@ -31,8 +31,9 @@ export function LensResultJunior({
   className?: string;
 }) {
   const { locale } = useMode();
-  const score = scan.risk_score ?? 87;
-  const isHighRisk = (scan.risk_level ?? 'CRITICAL') === 'CRITICAL' || (scan.risk_level ?? 'CRITICAL') === 'HIGH';
+  const score = scan.risk_score ?? (scan.risk_level ? 0 : 87);
+  const riskLevel = normalizeRiskLevel(scan.risk_level, score);
+  const isHighRisk = riskLevel === 'CRITICAL' || riskLevel === 'HIGH' || score >= 50;
   const simpleFindings = (scan.findings ?? []).slice(0, 3);
   const findingIcons = [IconKey, IconLink, IconClock];
 
@@ -101,7 +102,7 @@ export function LensResultJunior({
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-raised border border-border text-xs font-mono font-bold text-foreground">
           <span>{locale === 'kk' ? 'Қауіп деңгейі:' : 'Индекс риска:'}</span>
           <span className={isHighRisk ? 'text-red-400' : 'text-emerald-400'}>
-            {score} / 100 ({scan.risk_level ?? 'CRITICAL'})
+            {score} / 100 ({riskLevel})
           </span>
         </div>
       </div>
