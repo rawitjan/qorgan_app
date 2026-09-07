@@ -404,8 +404,41 @@ export function LensScanner({
 
           {(inputType === 'image' || inputType === 'screenshot' || inputType === 'qr') && (
             <div className="flex flex-col gap-2 w-full mt-1">
+              <div className="flex items-center gap-1.5 flex-wrap justify-center mb-0.5">
+                <span className="text-[10px] text-muted-foreground font-semibold">
+                  {locale === 'kk' ? 'Үлгілер:' : 'Примеры:'}
+                </span>
+                {[
+                  { label: 'Kaspi Bonus Fake', val: 'Kaspi 50000 bonus fake' },
+                  { label: 'CyberPol Штраф', val: 'CyberPol mvd order check' },
+                  { label: 'Halyk Инвест', val: 'Halyk invest fake message' },
+                ].map((chip) => (
+                  <button
+                    key={chip.label}
+                    type="button"
+                    onClick={() => onPayloadChange?.(chip.val)}
+                    className="text-[10px] px-2 py-0.5 rounded-full border border-border bg-surface-raised text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+                  >
+                    {chip.label}
+                  </button>
+                ))}
+              </div>
+
+              <input
+                type="text"
+                value={inputPayload}
+                onChange={(e) => onPayloadChange?.(e.target.value)}
+                placeholder={
+                  locale === 'kk'
+                    ? 'Қосымша мән-жай немесе скриншот атауы...'
+                    : 'Контекст или описание скриншота...'
+                }
+                disabled={isScanning}
+                className="w-full h-10 px-3 text-xs rounded-xl bg-input border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm"
+              />
+
               <Button
-                onClick={() => onScan?.(inputType, inputPayload || 'image_sample')}
+                onClick={() => onScan?.(inputType, inputPayload || 'screenshot_sample.png')}
                 disabled={isScanning}
                 className="w-full h-11 text-xs font-bold gap-1.5"
               >

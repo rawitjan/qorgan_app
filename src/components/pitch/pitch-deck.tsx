@@ -211,6 +211,13 @@ export function PitchDeck() {
         </button>
       ) : (
         <div className="fixed bottom-4 sm:bottom-6 z-50 flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#121620]/90 backdrop-blur-xl border border-white/15 text-white shadow-[0_10px_35px_rgba(0,0,0,0.6)] print:hidden transition-all hover:bg-[#121620]">
+          {/* Team NXT Badge */}
+          <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 text-[11px] font-black uppercase tracking-wider">
+            ⚡ КОМАНДА NXT
+          </span>
+
+          <div className="w-[1px] h-4 bg-white/20 mx-0.5 hidden lg:block" />
+
           {/* Language Switcher Button */}
           <button
             onClick={toggleLang}

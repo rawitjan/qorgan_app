@@ -213,7 +213,7 @@ export function useLensScanner() {
         let token = await getAccessToken();
         const createPayload = {
           inputType: type,
-          content: filePayload ? undefined : activePayload,
+          content: activePayload || filePayload?.name,
           file: filePayload,
         };
         let createdScan: Awaited<ReturnType<typeof createLensScan>>;
@@ -280,13 +280,33 @@ export function useLensScanner() {
     });
   }, []);
 
-  const handleFileUpload = useCallback((file: File) => {
+  const handleFileUpload = useCallback(async (file: File) => {
     setFilePayload(file);
+    const objectUrl = URL.createObjectURL(file);
     setFilePreview((currentPreview) => {
       if (currentPreview) URL.revokeObjectURL(currentPreview);
-      return URL.createObjectURL(file);
+      return objectUrl;
     });
     setInputPayload(file.name);
+
+    // Browser-native QR code recognition if present
+    if (typeof window !== 'undefined' && 'BarcodeDetector' in window) {
+      try {
+        const barcodeDetector = new (window as unknown as { BarcodeDetector: new (opts: { formats: string[] }) => { detect: (src: ImageBitmap | HTMLImageElement) => Promise<Array<{ rawValue: string }>> } }).BarcodeDetector({ formats: ['qr_code'] });
+        const img = document.createElement('img');
+        img.src = objectUrl;
+        await new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+        const barcodes = await barcodeDetector.detect(img);
+        if (barcodes && barcodes.length > 0 && barcodes[0].rawValue) {
+          setInputPayload(barcodes[0].rawValue);
+        }
+      } catch {
+        // Fallback gracefully to filename
+      }
+    }
   }, []);
 
   const selectHistoryScan = useCallback(

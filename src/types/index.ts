@@ -14,6 +14,48 @@ export type User = {
   updated_at?: string;
 };
 
+export type DefenseDomainCode = 'cyber' | 'safe' | 'law';
+
+export interface DefenseDomainInfo {
+  code: DefenseDomainCode;
+  name_kk: string;
+  name_ru: string;
+  scope_ru: string[];
+  scope_kk: string[];
+  description_ru: string;
+  description_kk: string;
+}
+
+export const DEFENSE_DOMAINS: Record<DefenseDomainCode, DefenseDomainInfo> = {
+  cyber: {
+    code: 'cyber',
+    name_kk: 'Цифрлық қауіпсіздік',
+    name_ru: 'Цифровая безопасность',
+    scope_ru: ['Phishing', 'Scam', 'Fake bank', 'Social engineering', 'OTP', 'QR', 'Marketplace', 'Account theft'],
+    scope_kk: ['Фишинг', 'Скам', 'Фейк банк', 'Әлеуметтік инженерия', 'OTP кодтар', 'QR айлалар', 'Маркетплейс', 'Аккаунт ұрлау'],
+    description_ru: 'Защита от финансовых, технических киберугроз, фишинга и кражи аккаунтов.',
+    description_kk: 'Қаржылық және техникалық киберқауіптерден, фишингтен және аккаунт ұрлаудан қорғау.'
+  },
+  safe: {
+    code: 'safe',
+    name_kk: 'Қауіпсіз орта',
+    name_ru: 'Безопасная среда',
+    scope_ru: ['Буллинг', 'Кибербуллинг', 'Угрозы', 'Шантаж', 'Преследование', 'Давление'],
+    scope_kk: ['Буллинг', 'Кибербуллинг', 'Қатерлер', 'Бопсалау', 'Қудалау', 'Қысым'],
+    description_ru: 'Защита подростков и граждан от буллинга, травли, шантажа и давления.',
+    description_kk: 'Жасөспірімдер мен азаматтарды буллингтен, қорқытудан, бопсалаудан және қысымнан қорғау.'
+  },
+  law: {
+    code: 'law',
+    name_kk: 'Құқықтық сауаттылық',
+    name_ru: 'Правовая грамотность',
+    scope_ru: ['Права потребителей', 'Трудовые вопросы', 'Образование', 'Персональные данные', 'Договоры'],
+    scope_kk: ['Тұтынушылар құқығы', 'Еңбек мәселелері', 'Білім беру', 'Дербес деректер', 'Шарттар'],
+    description_ru: 'Правовая защита интересов граждан по законам РК, авто-генерация обращений eOtinish.',
+    description_kk: 'ҚР заңдарымен азаматтардың мүддесін қорғау, eOtinish ресми арыздарын авто-генерациялау.'
+  }
+};
+
 export type SkillSlug =
   | 'phishing'
   | 'scam_detection'

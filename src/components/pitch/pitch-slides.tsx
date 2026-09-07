@@ -32,6 +32,8 @@ import {
   IconPhoneCall,
   IconShieldCheck,
   IconShieldX,
+  IconFilter,
+  IconPhoto,
 } from '@tabler/icons-react';
 import { cn } from '@/lib/utils';
 
@@ -136,7 +138,7 @@ export function SlideFrame({
       {/* Bottom Footer */}
       <footer className="flex items-center justify-between pt-3 border-t border-[#121620]/10 text-[11px] sm:text-xs font-bold text-[#121620]/50 tracking-wider">
         <div className="flex items-center gap-3">
-          <span>QORGAN AI DEFENSE OS · ЖЮРИ PITCH 2026</span>
+          <span>QORGAN AI DEFENSE OS · КОМАНДА NXT · ЖЮРИ PITCH 2026</span>
           <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-[#121620]/30" />
           <span className="hidden sm:inline-block font-mono text-[10px]">ALEMAI · QWEN 3 8B</span>
         </div>
@@ -153,22 +155,27 @@ export function SlideFrame({
 }
 
 // -------------------------------------------------------------
-// SLIDE 01: HERO / COVER (01/15)
+// SLIDE 01: HERO / COVER (01/14)
 // -------------------------------------------------------------
 export function Slide01Hero({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
       metaLeft={isKk ? "Басқалар киберқауіпті талқылап жатқанда — біз оны тоқтатамыз" : "Пока другие обсуждают киберугрозы — мы их нейтрализуем"}
-      metaRight="01/15"
+      metaRight="01/14"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full items-center">
         {/* Left Headline Area */}
         <div className="lg:col-span-7 flex flex-col justify-between h-full space-y-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#121620]/15 bg-white/70 text-[#121620] text-xs font-black uppercase tracking-wider mb-3">
-              <span className="w-2 h-2 rounded-full bg-[#2775f6] animate-pulse" />
-              {isKk ? "🇰🇿 Ұлттық AI-стартап · Қазақстан 2026" : "🇰🇿 Национальный AI-стартап · Казахстан 2026"}
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#121620]/15 bg-white/70 text-[#121620] text-xs font-black uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-[#2775f6] animate-pulse" />
+                {isKk ? "🇰🇿 Ұлттық AI-стартап · Қазақстан 2026" : "🇰🇿 Национальный AI-стартап · Казахстан 2026"}
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#121620] text-[#38bdf8] text-xs font-black uppercase tracking-wider shadow-sm">
+                <span>⚡ КОМАНДА NXT</span>
+              </div>
             </div>
 
             <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black text-[#121620] tracking-tight leading-[1.02] uppercase">
@@ -282,14 +289,14 @@ export function Slide01Hero({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 02: FINANCIAL FRAUD & 60B KZT LOSS (02/15)
+// SLIDE 02: FINANCIAL FRAUD & 60B KZT LOSS (02/14)
 // -------------------------------------------------------------
 export function Slide02Problem({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
       metaLeft={isKk ? "ҚР Бас прокуратурасы және ІІМ ресми деректері (2024–2026)" : "Официальная статистика ГП РК и МВД (2024–2026)"}
-      metaRight="02/15"
+      metaRight="02/14"
     >
       <div className="flex flex-col h-full justify-between space-y-3">
         <div>
@@ -398,14 +405,14 @@ export function Slide02Problem({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 03: CYBERBULLYING & ADOLESCENTS (03/15)
+// SLIDE 03: CYBERBULLYING & ADOLESCENTS (03/14)
 // -------------------------------------------------------------
 export function Slide03Cyberbullying({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
       metaLeft={isKk ? "ЮНИСЕФ және ҚР Оқу-ағарту министрлігі деректері" : "Данные ЮНИСЕФ и Минпросвещения РК"}
-      metaRight="03/15"
+      metaRight="03/14"
     >
       <div className="flex flex-col h-full justify-between space-y-3">
         <div>
@@ -500,142 +507,189 @@ export function Slide03Cyberbullying({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 04: QORGAN ECOSYSTEM / 4 PILLARS (04/15)
+// SLIDE 04: SOLUTION & ECOSYSTEM (CYBER · SAFE · LAW) (04/14)
 // -------------------------------------------------------------
 export function Slide04Solution({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
-      metaLeft={isKk ? "Жай ғана уәде емес, толыққанды қауіпсіздік контуры" : "Не обещания, а целостная экосистема безопасности"}
-      metaRight="04/15"
+      metaLeft={isKk ? "3 бағанды қауіпсіздік контуры: CYBER · SAFE · LAW" : "3 вектора защиты: CYBER · SAFE · LAW"}
+      metaRight="04/14"
     >
-      <div className="flex flex-col h-full justify-between space-y-3.5">
+      <div className="flex flex-col h-full justify-between space-y-3">
         <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2775f6]/10 text-[#2775f6] text-xs font-black uppercase tracking-wider mb-2">
+            <IconShield size={14} /> {isKk ? "3 Қорғаныс Векторы" : "3 Вектора Защиты"}
+          </div>
           <h2 className="text-3xl sm:text-5xl font-black text-[#121620] tracking-tight uppercase leading-[1.04]">
-            {isKk ? "QORGAN: Киберқауіпке кешенді ұлттық жауап" : "QORGAN: Комплексный ответ на киберугрозы"}
+            {isKk ? "QORGAN: Үш деңгейлі ұлттық қорғаныс" : "QORGAN: Трёхвекторная национальная защита"}
           </h2>
           <p className="mt-1 text-xs sm:text-sm text-[#121620]/75 max-w-2xl font-semibold">
             {isKk
-              ? "Лезде техникалық тексеру, қазақ тіліндегі AI, ҚР заңнамасына сай құқықтық көмек және интерактивті оқыту бір жүйеде."
-              : "Объединяем мгновенную проверку, отечественный AI, правовую помощь по законам РК и интерактивное обучение в едином контуре."}
+              ? "Кез келген қауіп-қатер осы үш негізгі доменнің біріне жіктеліп, бейімделген AI және құқықтық алгоритмдермен өңделеді."
+              : "Любая входящая угроза классифицируется по трем ключевым доменам с запуском профильных алгоритмов AI, безопасности и права."}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 flex-1 items-stretch">
-          {/* Pillar 01: Lens */}
+        {/* 3 Core Pillars: CYBER · SAFE · LAW */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3.5 flex-1 items-stretch">
+          {/* Pillar 01: CYBER */}
           <div className="rounded-[26px] bg-[#2775f6] text-white p-4 sm:p-5 flex flex-col justify-between shadow-lg relative overflow-hidden">
             <div>
               <div className="flex justify-between items-start">
-                <span className="text-[11px] font-black uppercase tracking-wider text-white/80">
-                  {isKk ? "01 / Құрал" : "01 / Модуль"}
+                <span className="px-2.5 py-0.5 rounded-full bg-white/20 text-white font-mono text-[11px] font-black uppercase tracking-wider">
+                  01 / CYBER
                 </span>
                 <StarburstBadge size={22} className="text-white" />
               </div>
-              <h3 className="mt-2 text-xl font-black">QORGAN Lens</h3>
-              <p className="mt-1.5 text-xs text-white/85 leading-relaxed font-semibold">
-                {isKk
-                  ? "Сілтеме, скриншот, SMS немесе QR-кодты сканерлейді. Домен клондарын және фишинг айлаларын ашып көрсетеді."
-                  : "Мультимодальный AI-сканер ссылок, скриншотов, SMS и QR. Раскрывает клоны доменов и скрытые ловушки."}
+              <h3 className="mt-2 text-xl font-black">{isKk ? "Цифрлық қауіпсіздік" : "Цифровая безопасность"}</h3>
+              <p className="mt-1 text-xs text-white/80 font-semibold">
+                {isKk ? "Қаржылық және техникалық киберқауіптерден 100% қорғау" : "Защита от финансовых и технических киберугроз"}
               </p>
-              <div className="mt-3 p-2.5 rounded-xl bg-white/10 border border-white/20 text-[11px] font-mono">
-                <div className="flex items-center justify-between text-white/90">
-                  <span>fake-kaspi.kz</span>
-                  <span className="text-[#ff7582] font-black">CRITICAL</span>
-                </div>
-                <div className="text-[10px] text-white/70 mt-1">✓ AlemAI сараптамасы дайын</div>
-              </div>
-            </div>
-            <div className="mt-4 pt-2 border-t border-white/20 flex items-center justify-between">
-              <span className="text-xs font-mono text-white/80 font-bold">{isKk ? "Мультимодальды" : "Мультимодальный"}</span>
-              <span className="text-3xl font-black tracking-tighter opacity-95">01</span>
-            </div>
-          </div>
 
-          {/* Pillar 02: Legal Guide */}
-          <div className="rounded-[26px] bg-[#dbe2ec] text-[#121620] p-4 sm:p-5 flex flex-col justify-between border border-[#121620]/10 shadow-sm relative overflow-hidden">
-            <div>
-              <div className="flex justify-between items-start">
-                <span className="text-[11px] font-black uppercase tracking-wider text-[#121620]/60">
-                  {isKk ? "02 / Құқық" : "02 / Навигация"}
-                </span>
-                <StarburstBadge size={22} className="text-[#2775f6]" />
+              {/* Exact Scope List */}
+              <div className="mt-3 flex flex-wrap gap-1.5 text-[11px] font-mono">
+                <span className="px-2 py-0.5 rounded-md bg-white/15 text-white font-bold">Phishing</span>
+                <span className="px-2 py-0.5 rounded-md bg-white/15 text-white font-bold">Scam</span>
+                <span className="px-2 py-0.5 rounded-md bg-white/15 text-white font-bold">Fake bank</span>
+                <span className="px-2 py-0.5 rounded-md bg-white/15 text-white font-bold">Social engineering</span>
+                <span className="px-2 py-0.5 rounded-md bg-white/15 text-white font-bold">OTP</span>
+                <span className="px-2 py-0.5 rounded-md bg-white/15 text-white font-bold">QR</span>
+                <span className="px-2 py-0.5 rounded-md bg-white/15 text-white font-bold">Marketplace</span>
+                <span className="px-2 py-0.5 rounded-md bg-white/15 text-white font-bold">Account theft</span>
               </div>
-              <h3 className="mt-2 text-xl font-black">{isKk ? "Құқықтық навигатор" : "Правовой гид"}</h3>
-              <p className="mt-1.5 text-xs text-[#121620]/75 leading-relaxed font-semibold">
-                {isKk
-                  ? "ҚР ҚК 190-бабы («Алаяқтық») бойынша Киберполға eOtinish арқылы ресми арыз жасау және банкті 15 минутта бұғаттау алгоритмі."
-                  : "Шаблоны заявлений по ст. 190 УК РК (мошенничество) и алгоритм экстренной блокировки счетов за 15 минут."}
-              </p>
-              <div className="mt-3 p-2.5 rounded-xl bg-white/60 border border-[#121620]/10 text-[11px] font-mono text-[#121620]">
+
+              <div className="mt-3 p-2.5 rounded-xl bg-white/10 border border-white/20 text-[11px] font-mono text-white/95">
                 <div className="flex items-center justify-between font-bold">
-                  <span>eOtinish / CyberPol</span>
-                  <span className="text-[#2775f6]">СТ. 190</span>
+                  <span>QORGAN Lens · Дефангинг</span>
+                  <span className="text-[#86efac]">0% Галлюцинация</span>
                 </div>
-                <div className="text-[10px] text-[#121620]/65 mt-1">✓ Дәлелдер базасы бекітілді</div>
+                <div className="text-[10px] text-white/70 mt-1">✓ Kaspi, Halyk, eGov клондарын лезде тану</div>
               </div>
             </div>
-            <div className="mt-4 pt-2 border-t border-[#121620]/10 flex items-center justify-between">
-              <span className="text-xs font-mono text-[#121620]/70 font-bold">{isKk ? "Заңгерлік қорғаныс" : "Юридическая защита"}</span>
-              <span className="text-3xl font-black tracking-tighter text-[#121620]/80">02</span>
+
+            <div className="mt-3 pt-2 border-t border-white/20 flex items-center justify-between">
+              <span className="text-xs font-mono text-white/80 font-bold">{isKk ? "Техникалық қалқан" : "Технический щит"}</span>
+              <span className="text-3xl font-black tracking-tighter opacity-95">CYBER</span>
             </div>
           </div>
 
-          {/* Pillar 03: XP Academy */}
-          <div className="rounded-[26px] bg-[#121620] text-white p-4 sm:p-5 flex flex-col justify-between shadow-lg border border-white/10 relative overflow-hidden">
+          {/* Pillar 02: SAFE */}
+          <div className="rounded-[26px] bg-[#121620] text-white p-4 sm:p-5 flex flex-col justify-between border border-white/10 shadow-lg relative overflow-hidden">
             <div>
               <div className="flex justify-between items-start">
-                <span className="text-[11px] font-black uppercase tracking-wider text-[#38bdf8]">
-                  {isKk ? "03 / Тәжірибе" : "03 / Практика"}
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-[11px] font-black uppercase tracking-wider">
+                  02 / SAFE
                 </span>
-                <StarburstBadge size={22} className="text-[#38bdf8]" />
+                <StarburstBadge size={22} className="text-emerald-400" />
               </div>
-              <h3 className="mt-2 text-xl font-black">{isKk ? "Миссиялар (XP)" : "Миссии (XP)"}</h3>
-              <p className="mt-1.5 text-xs text-white/75 leading-relaxed font-semibold">
-                {isKk
-                  ? "Қазақстандағы шынайы схемалармен (Kaspi, сәлемдеме, жалған қоңырау) интерактивті жаттығу. Қатені қауіпсіз ортада тану."
-                  : "Интерактивный симулятор на реальных кейсах Казахстана. Ошибки совершаются в безопасной среде тренажера."}
+              <h3 className="mt-2 text-xl font-black">{isKk ? "Қауіпсіз орта" : "Безопасная среда"}</h3>
+              <p className="mt-1 text-xs text-slate-300 font-semibold">
+                {isKk ? "Жасөспірімдер мен азаматтарды психологиялық қорғау" : "Защита подростков и граждан от давления и травли"}
               </p>
-              <div className="mt-3 p-2.5 rounded-xl bg-white/5 border border-white/15 text-[11px] font-mono">
-                <div className="flex items-center justify-between text-[#38bdf8] font-bold">
-                  <span>{isKk ? "Миссия #4: Сәлемдеме" : "Миссия #4: Посылка"}</span>
-                  <span>+150 XP</span>
+
+              {/* Exact Scope List */}
+              <div className="mt-3 flex flex-wrap gap-1.5 text-[11px] font-mono">
+                <span className="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-bold">
+                  {isKk ? "Буллинг" : "Буллинг"}
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-bold">
+                  {isKk ? "Кибербуллинг" : "Кибербуллинг"}
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-bold">
+                  {isKk ? "Қатерлер" : "Угрозы"}
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-bold">
+                  {isKk ? "Бопсалау" : "Шантаж"}
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-bold">
+                  {isKk ? "Қудалау" : "Преследование"}
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-bold">
+                  {isKk ? "Қысым" : "Давление"}
+                </span>
+              </div>
+
+              <div className="mt-3 p-2.5 rounded-xl bg-white/5 border border-white/10 text-[11px] font-mono text-slate-200">
+                <div className="flex items-center justify-between font-bold">
+                  <span>Junior Safe · Сенім 111</span>
+                  <span className="text-emerald-400">ӘҚБтК 127-2</span>
                 </div>
-                <div className="text-[10px] text-slate-400 mt-1">✓ Фишингтік маркер табылды</div>
+                <div className="text-[10px] text-slate-400 mt-1">✓ Дәлелдер сейфіне автоматты сақтау</div>
               </div>
             </div>
-            <div className="mt-4 pt-2 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs font-mono text-[#38bdf8] font-bold">{isKk ? "Геймификация" : "Геймификация"}</span>
-              <span className="text-3xl font-black tracking-tighter text-[#38bdf8]">03</span>
+
+            <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between">
+              <span className="text-xs font-mono text-emerald-400 font-bold">{isKk ? "Балалар мен қоғам" : "Дети и общество"}</span>
+              <span className="text-3xl font-black tracking-tighter text-emerald-400">SAFE</span>
             </div>
           </div>
 
-          {/* Pillar 04: Junior Mode */}
+          {/* Pillar 03: LAW */}
           <div className="rounded-[26px] bg-white text-[#121620] p-4 sm:p-5 flex flex-col justify-between border border-[#121620]/10 shadow-sm relative overflow-hidden">
             <div>
               <div className="flex justify-between items-start">
-                <span className="text-[11px] font-black uppercase tracking-wider text-emerald-700">
-                  {isKk ? "04 / Жасөспірім" : "04 / Дети"}
+                <span className="px-2.5 py-0.5 rounded-full bg-[#121620]/10 text-[#121620] font-mono text-[11px] font-black uppercase tracking-wider">
+                  03 / LAW
                 </span>
-                <StarburstBadge size={22} className="text-emerald-500" />
+                <StarburstBadge size={22} className="text-[#2775f6]" />
               </div>
-              <h3 className="mt-2 text-xl font-black">{isKk ? "Junior Режимі" : "Режим Junior"}</h3>
-              <p className="mt-1.5 text-xs text-[#121620]/75 leading-relaxed font-semibold">
-                {isKk
-                  ? "13–15 жастағы жасөспірімдерге бейімделген қарапайым тіл, буллингтен қорғау және мемлекеттік «111» сенім телефонына жедел байланыс."
-                  : "Понятный язык для подростков 13–15 лет, защита от буллинга и прямая связь с горячей линией доверия «111»."}
+              <h3 className="mt-2 text-xl font-black">{isKk ? "Құқықтық сауаттылық" : "Правовая грамотность"}</h3>
+              <p className="mt-1 text-xs text-[#121620]/75 font-semibold">
+                {isKk ? "ҚР заңдарымен азаматтардың мүддесін қорғау навигаторы" : "Навигатор правовой защиты интересов граждан по законам РК"}
               </p>
-              <div className="mt-3 p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-[11px] font-mono text-emerald-950">
+
+              {/* Exact Scope List */}
+              <div className="mt-3 flex flex-wrap gap-1.5 text-[11px] font-mono">
+                <span className="px-2 py-0.5 rounded-md bg-[#ebeae5] border border-[#121620]/10 text-[#121620] font-bold">
+                  {isKk ? "Тұтынушылар құқығы" : "Права потребителей"}
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-[#ebeae5] border border-[#121620]/10 text-[#121620] font-bold">
+                  {isKk ? "Еңбек мәселелері" : "Трудовые вопросы"}
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-[#ebeae5] border border-[#121620]/10 text-[#121620] font-bold">
+                  {isKk ? "Білім беру" : "Образование"}
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-[#ebeae5] border border-[#121620]/10 text-[#121620] font-bold">
+                  {isKk ? "Дербес деректер" : "Персональные данные"}
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-[#ebeae5] border border-[#121620]/10 text-[#121620] font-bold">
+                  {isKk ? "Шарттар" : "Договоры"}
+                </span>
+              </div>
+
+              <div className="mt-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[11px] font-mono text-[#121620]">
                 <div className="flex items-center justify-between font-bold">
-                  <span>ӘҚБтК 127-2 / Сенім 111</span>
-                  <span className="text-emerald-700">ҚАУІПСІЗ</span>
+                  <span>eOtinish · eGov · Заң №94-V</span>
+                  <span className="text-[#2775f6]">Авто-өтініш</span>
                 </div>
-                <div className="text-[10px] text-emerald-800 mt-1">✓ Дәлелдер сейфіне сақталды</div>
+                <div className="text-[10px] text-slate-500 mt-1">✓ Нақты баптарға сілтемелер мен дайын шағым үлгісі</div>
               </div>
             </div>
-            <div className="mt-4 pt-2 border-t border-[#121620]/10 flex items-center justify-between">
-              <span className="text-xs font-mono text-emerald-700 font-bold">{isKk ? "Балалар қорғаны" : "Защита детей"}</span>
-              <span className="text-3xl font-black tracking-tighter text-emerald-800">04</span>
+
+            <div className="mt-3 pt-2 border-t border-[#121620]/10 flex items-center justify-between">
+              <span className="text-xs font-mono text-[#2775f6] font-bold">{isKk ? "Құқықтық қалқан" : "Правовой щит"}</span>
+              <span className="text-3xl font-black tracking-tighter text-[#2775f6]">LAW</span>
             </div>
+          </div>
+        </div>
+
+        {/* Bottom Unified Platform Ribbon */}
+        <div className="rounded-2xl bg-gradient-to-r from-[#2775f6]/10 via-[#121620]/5 to-emerald-500/10 border border-[#121620]/10 p-3 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-[#121620]">
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-0.5 rounded bg-[#121620] text-white text-[10px] font-black uppercase tracking-wider">Unified Core</span>
+            <span className="font-bold">
+              {isKk
+                ? "3 Домен · Бірыңғай QORGAN Lens интеллектуалды маршрутизаторы"
+                : "3 Домена · Единый интеллектуальный маршрутизатор QORGAN Lens"}
+            </span>
+          </div>
+          <div className="flex items-center gap-3 text-[11px] text-slate-600">
+            <span>LensRouter AI</span>
+            <span>•</span>
+            <span>AlemAI LLM</span>
+            <span>•</span>
+            <span>NXT Team</span>
           </div>
         </div>
       </div>
@@ -644,14 +698,14 @@ export function Slide04Solution({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 05: MULTIMODAL LENS SCANNER (05/15)
+// SLIDE 05: MULTIMODAL LENS SCANNER (05/14)
 // -------------------------------------------------------------
 export function Slide05MultimodalLens({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
       metaLeft={isKk ? "Мультимодальды сканерлеу тетіктері" : "Механизмы мультимодального сканирования"}
-      metaRight="05/15"
+      metaRight="05/14"
     >
       <div className="flex flex-col h-full justify-between space-y-3">
         <div>
@@ -739,14 +793,14 @@ export function Slide05MultimodalLens({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 06: 5-STAGE AI PIPELINE & ALEMAI (06/15)
+// SLIDE 06: 5-STAGE AI PIPELINE & ALEMAI (06/14)
 // -------------------------------------------------------------
 export function Slide06TechPipeline({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
       metaLeft={isKk ? "AlemAI (Qwen 3 8B) ұлттық моделі және 5 сатылы сараптама" : "Национальная модель AlemAI (Qwen 3 8B) и 5-стадийный контур"}
-      metaRight="06/15"
+      metaRight="06/14"
     >
       <div className="flex flex-col h-full justify-between space-y-3">
         <div>
@@ -840,14 +894,14 @@ export function Slide06TechPipeline({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 07: DETERMINISTIC RISK ENGINE (07/15)
+// SLIDE 07: DETERMINISTIC RISK ENGINE (07/14)
 // -------------------------------------------------------------
 export function Slide07RiskEngine({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
       metaLeft={isKk ? "Математикалық кепілдік · 100% тұрақты детерминистік есептеу" : "Математическая гарантия · 100% стабильный детерминированный расчет"}
-      metaRight="07/15"
+      metaRight="07/14"
     >
       <div className="flex flex-col h-full justify-between space-y-3">
         <div>
@@ -936,14 +990,14 @@ export function Slide07RiskEngine({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 08: GOLDEN 15 MINUTES & LEGAL NAVIGATOR (08/15)
+// SLIDE 08: GOLDEN 15 MINUTES & LEGAL NAVIGATOR (08/14)
 // -------------------------------------------------------------
 export function Slide08LegalNavigator({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
       metaLeft={isKk ? "ҚР Ұлттық Банкі, «Төлемдер туралы» Заң және ҚК 190" : "Нацбанк РК, Закон «О платежах» и ст. 190 УК"}
-      metaRight="08/15"
+      metaRight="08/14"
     >
       <div className="flex flex-col h-full justify-between space-y-3">
         <div>
@@ -1039,123 +1093,267 @@ export function Slide08LegalNavigator({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 09: LIVE PRODUCT DEMO (09/15)
+// SLIDE 09: PRODUCT SHOWCASE, PIPELINE & DEFENSE FILTERS (09/14)
 // -------------------------------------------------------------
-export function Slide09Demo({ lang = 'kk' }: { lang?: PitchLang }) {
+export function Slide09ProductShowcase({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
-      metaLeft={isKk ? "Нақты инцидентті 1 минутта анықтау және шешу" : "Реальный сценарий проверки за 1 минуту"}
-      metaRight="09/15"
+      metaLeft={isKk ? "Өнім интерфейсі, жұмыс механизмі және 5 деңгейлі қорғаныс сүзгілері" : "Интерфейс продукта, логика работы и 5 уровней фильтрации угроз"}
+      metaRight="09/14"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 h-full items-center">
-        {/* Left: Scan Breakdown */}
-        <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-3">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 h-full items-stretch">
+        {/* Left 6 cols: How it works (3-step pipeline) + 5 Defense Filters */}
+        <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-2.5">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2775f6]/10 text-[#2775f6] text-xs font-black uppercase tracking-wider mb-2">
-              <IconCrosshair size={14} /> {isKk ? "QORGAN Lens іс жүзінде" : "Демонстрация QORGAN Lens"}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2775f6]/15 text-[#2775f6] text-xs font-black uppercase tracking-wider mb-2">
+              <IconCpu size={14} /> {isKk ? "ӨНІМ & ТЕХНОЛОГИЯЛЫҚ СҮЗГІЛЕР" : "ПРОДУКТ & ЗАЩИТНЫЕ ФИЛЬТРЫ"}
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-[#121620] tracking-tight uppercase leading-[1.04]">
-              {isKk ? "Тікелей өнім демосы: 100/100 Қатер" : "Демонстрация: 100/100 Угроза"}
+            <h2 className="text-2xl sm:text-4xl font-black text-[#121620] tracking-tight uppercase leading-[1.05]">
+              {isKk ? "Қалай жұмыс істейді & 5 Сүзгі" : "Как это работает & 5 Фильтров"}
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-[#121620]/75 font-semibold">
+            <p className="mt-1 text-xs sm:text-sm text-[#121620]/75 font-semibold">
               {isKk
-                ? "Қолданушыға «Kaspi картаңыз бұғатталды, fake-kaspi-security.kz сайтына өтіңіз» деген SMS келді. Жүйенің лездік әрекеті:"
-                : "Пользователь загружает подозрительное SMS под видом Kaspi. Система мгновенно классифицирует угрозу."}
+                ? "Қолданушы инциденті 3 жылдам сатыдан өтіп, 5 мамандандырылған қауіпсіздік сүзгісімен сүзіледі."
+                : "Каждый инцидент проходит 3 этапа и проверяется 5 специализированными контурами безопасности."}
             </p>
           </div>
 
-          {/* 3 Finding Cards */}
-          <div className="space-y-2">
-            <div className="rounded-[18px] bg-white p-3 border border-[#121620]/10 flex items-start gap-3 shadow-sm">
-              <div className="w-7 h-7 rounded-xl bg-[#ec5562]/15 text-[#ec5562] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
-                ⚠️
+          {/* 3-Step Pipeline Card */}
+          <div className="rounded-[20px] bg-white p-3 border border-[#121620]/10 shadow-sm">
+            <div className="text-[11px] font-extrabold uppercase tracking-wider text-[#2775f6] flex items-center gap-1.5 mb-2">
+              <IconRocket size={14} /> {isKk ? "3-Сатылы қорғаныс контуры" : "3-Шаговый контур защиты"}
+            </div>
+            <div className="grid grid-cols-3 gap-2 text-xs">
+              <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/60">
+                <div className="font-mono text-[10px] font-black text-slate-400">01 / ВВОД</div>
+                <div className="font-black text-[#121620] mt-0.5">{isKk ? "Мультимодальды" : "Мультимодальный"}</div>
+                <div className="text-[10px] text-[#121620]/70 mt-0.5">{isKk ? "Скриншот, URL, QR, SMS, Аудио" : "Скриншот, URL, QR, SMS, Аудио"}</div>
               </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-black text-[#121620]">
-                  {isKk ? "Жалған домен клон" : "Клон домена"}
-                </h4>
-                <p className="text-[11px] text-[#121620]/70 mt-0.5 font-semibold">
-                  {isKk ? "fake-kaspi-security.kz домені ресми Kaspi.kz сервисіне еш қатысы жоқ." : "Домен зарегистрирован недавно и маскируется под банк."}
-                </p>
+              <div className="p-2 rounded-xl bg-[#2775f6]/10 border border-[#2775f6]/20">
+                <div className="font-mono text-[10px] font-black text-[#2775f6]">02 / АНАЛИЗ</div>
+                <div className="font-black text-[#121620] mt-0.5">{isKk ? "AlemAI + Скоринг" : "AlemAI + Скоринг"}</div>
+                <div className="text-[10px] text-[#121620]/70 mt-0.5">{isKk ? "Детерминистік 0-100 & Контекст" : "Детерминированный 0-100 & Контекст"}</div>
+              </div>
+              <div className="p-2 rounded-xl bg-emerald-50 border border-emerald-200/60">
+                <div className="font-mono text-[10px] font-black text-emerald-600">03 / РЕАКЦИЯ</div>
+                <div className="font-black text-[#121620] mt-0.5">{isKk ? "Шұғыл шара & Заң" : "План & eOtinish"}</div>
+                <div className="text-[10px] text-[#121620]/70 mt-0.5">{isKk ? "8 Қадам, Дефангинг, Арыз PDF" : "8 Шагов, Дефангинг, Заявление"}</div>
               </div>
             </div>
+          </div>
 
-            <div className="rounded-[18px] bg-white p-3 border border-[#121620]/10 flex items-start gap-3 shadow-sm">
-              <div className="w-7 h-7 rounded-xl bg-[#e7a52e]/15 text-[#e7a52e] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
-                ⏳
-              </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-black text-[#121620]">
-                  {isKk ? "Шұғылдық қысымы & OTP талабы" : "Спешка и запрос OTP"}
-                </h4>
-                <p className="text-[11px] text-[#121620]/70 mt-0.5 font-semibold">
-                  {isKk ? "AlemAI карта мәліметтерін және SMS кодты ұрлау айласын таныды." : "AlemAI определил попытку хищения SMS-кода под давлением срочности."}
-                </p>
-              </div>
+          {/* 5 Defense Filters Grid */}
+          <div className="space-y-1.5 flex-1 flex flex-col justify-between">
+            <div className="p-1.5 rounded-lg bg-[#2775f6]/10 border border-[#2775f6]/20 flex items-center justify-between text-[10px] font-mono font-black text-[#121620]">
+              <span>{isKk ? "3 ДОМЕНГЕ ЖІКТЕУ: CYBER · SAFE · LAW" : "КЛАССИФИКАЦИЯ: CYBER · SAFE · LAW"}</span>
+              <span className="text-[#2775f6]">ROUTER V2.4</span>
             </div>
 
-            <div className="rounded-[18px] bg-[#2775f6] text-white p-3 flex items-start gap-3 shadow-md">
-              <div className="w-7 h-7 rounded-xl bg-white/20 text-white flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
-                ⚖️
+            <div className="text-[11px] font-extrabold uppercase tracking-wider text-[#121620]/70 flex items-center justify-between">
+              <span>{isKk ? "5 Мамандандырылған қорғаныс сүзгісі:" : "5 Специализированных фильтров защиты:"}</span>
+              <span className="font-mono text-[#2775f6] text-[10px]">ACTIVE SHIELD</span>
+            </div>
+
+            {/* Filter 1 */}
+            <div className="p-2 rounded-[14px] bg-white border border-[#121620]/10 flex items-center justify-between shadow-xs">
+              <div className="flex items-center gap-2.5">
+                <div className="w-6 h-6 rounded-lg bg-red-100 text-red-600 flex items-center justify-center text-xs font-black">
+                  1
+                </div>
+                <div>
+                  <div className="text-xs font-black text-[#121620]">
+                    {isKk ? "URL Spoofing & Домен-клон сүзгісі" : "Фильтр поддельных доменов (Spoofing)"}
+                  </div>
+                  <div className="text-[10px] text-[#121620]/70">
+                    {isKk ? "Levenshtein ұқсастығы, пуникод, жаңа домендер, fake-kaspi/fake-halyk" : "Levenshtein, punycode, возраст домена, клоны Kaspi/Halyk"}
+                  </div>
+                </div>
               </div>
-              <div>
-                <h4 className="text-xs sm:text-sm font-black text-white">
-                  {isKk ? "8 Қадамдық қазақша нұсқаулық" : "8 Шагов действий"}
-                </h4>
-                <p className="text-[11px] text-white/90 mt-0.5 font-semibold">
-                  {isKk ? "1. Кодты енгізбеу. 2. Kaspi сессиясын жабу. 3. Картаны бұғаттау. 4. eOtinish арызы." : "1. Не вводить код. 2. Закрыть сессии в банке. 3. Заблокировать карту."}
-                </p>
+              <span className="px-2 py-0.5 rounded bg-red-50 text-red-600 font-mono text-[9px] font-bold">CYBER · DNS</span>
+            </div>
+
+            {/* Filter 2 */}
+            <div className="p-2 rounded-[14px] bg-white border border-[#121620]/10 flex items-center justify-between shadow-xs">
+              <div className="flex items-center gap-2.5">
+                <div className="w-6 h-6 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center text-xs font-black">
+                  2
+                </div>
+                <div>
+                  <div className="text-xs font-black text-[#121620]">
+                    {isKk ? "Threat Intel & Мемлекеттік қара тізімдер" : "Threat Intel & Государственные черные списки"}
+                  </div>
+                  <div className="text-[10px] text-[#121620]/70">
+                    {isKk ? "АРРФР, Ұлттық Банк, FinReg KZ фишинг базалары және PhishTank" : "Базы АРРФР, Нацбанка РК, FinReg KZ и глобальный PhishTank"}
+                  </div>
+                </div>
               </div>
+              <span className="px-2 py-0.5 rounded bg-amber-50 text-amber-700 font-mono text-[9px] font-bold">CYBER · FEEDS</span>
+            </div>
+
+            {/* Filter 3 */}
+            <div className="p-2 rounded-[14px] bg-white border border-[#121620]/10 flex items-center justify-between shadow-xs">
+              <div className="flex items-center gap-2.5">
+                <div className="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-black">
+                  3
+                </div>
+                <div>
+                  <div className="text-xs font-black text-[#121620]">
+                    {isKk ? "Клиенттік құпия PII деректерді маскалау" : "Клиентское маскирование ПДН (PII Masking)"}
+                  </div>
+                  <div className="text-[10px] text-[#121620]/70">
+                    {isKk ? "ЖСН (ИИН), 16-санды карта нөмірі, CVV жіберілмес бұрын құрылғыда бүркемеленеді" : "ИИН, номера карт PAN, CVV маскируются на клиенте до отправки"}
+                  </div>
+                </div>
+              </div>
+              <span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-mono text-[9px] font-bold">SAFE · PRIVACY</span>
+            </div>
+
+            {/* Filter 4 */}
+            <div className="p-2 rounded-[14px] bg-white border border-[#121620]/10 flex items-center justify-between shadow-xs">
+              <div className="flex items-center gap-2.5">
+                <div className="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-black">
+                  4
+                </div>
+                <div>
+                  <div className="text-xs font-black text-[#121620]">
+                    {isKk ? "Психологиялық қысымды тану (AlemAI)" : "Семантический фильтр давления (AlemAI)"}
+                  </div>
+                  <div className="text-[10px] text-[#121620]/70">
+                    {isKk ? "Асықтыру («2 сағатта бұғатталады»), «ҰҚК/Полиция тергеуі», жеңіл пайда" : "Искусственная срочность, угроза блокировки карт, фальшивые силовики"}
+                  </div>
+                </div>
+              </div>
+              <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-mono text-[9px] font-bold">SAFE · NLP</span>
+            </div>
+
+            {/* Filter 5 */}
+            <div className="p-2 rounded-[14px] bg-white border border-[#121620]/10 flex items-center justify-between shadow-xs">
+              <div className="flex items-center gap-2.5">
+                <div className="w-6 h-6 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center text-xs font-black">
+                  5
+                </div>
+                <div>
+                  <div className="text-xs font-black text-[#121620]">
+                    {isKk ? "Құқықтық квалификатор & eOtinish шлюзі" : "Правовой квалификатор & eOtinish шлюз"}
+                  </div>
+                  <div className="text-[10px] text-[#121620]/70">
+                    {isKk ? "ҚР ҚК 190 және ӘҚБтК 127-2 нормалары бойынша лезде ресми арыз генерациялау" : "Квалификация по ст. 190 УК / ст. 127-2 КоАП и автогенерация заявления"}
+                  </div>
+                </div>
+              </div>
+              <span className="px-2 py-0.5 rounded bg-purple-50 text-purple-700 font-mono text-[9px] font-bold">LAW · LEGAL</span>
             </div>
           </div>
         </div>
 
-        {/* Right: UI Result Mockup */}
-        <div className="lg:col-span-6 h-full flex flex-col justify-center">
-          <div className="rounded-[28px] bg-[#121620] text-white p-5 sm:p-6 border border-white/10 shadow-2xl flex flex-col justify-between h-full max-h-[460px]">
-            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+        {/* Right 6 cols: Live Product UI Mockups & Screenshots */}
+        <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-3">
+          {/* Mockup 1: QORGAN Lens Threat Analysis Card */}
+          <div className="rounded-[24px] bg-[#121620] text-white p-4 sm:p-5 border border-white/15 shadow-xl flex flex-col justify-between space-y-2.5 relative overflow-hidden">
+            <div className="flex items-center justify-between pb-2 border-b border-white/10 text-xs">
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-[#ec5562]" />
-                <span className="text-xs font-mono font-bold text-white/80">{isKk ? "ҚАУІПСІЗДІК ЕСЕБІ" : "ОТЧЕТ БЕЗОПАСНОСТИ"}</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+                <span className="font-mono text-[11px] font-bold text-[#38bdf8]">
+                  QORGAN LENS // FORENSIC SCANNER
+                </span>
               </div>
-              <span className="px-3 py-1 rounded-full bg-[#ec5562] text-white text-xs font-black">
-                CRITICAL · 100/100
+              <span className="px-2.5 py-0.5 rounded-full bg-[#ec5562] text-white text-[10px] font-black tracking-wider">
+                CRITICAL · 94/100
               </span>
             </div>
 
-            <div className="my-auto space-y-2.5 py-2 font-semibold">
-              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                <div className="text-[10px] font-mono text-[#38bdf8] font-bold">{isKk ? "ТАЛДАУ НЫСАНЫ:" : "ИСТОЧНИК:"}</div>
-                <div className="text-xs font-mono text-white mt-1 break-all">
-                  hxxps://fake-kaspi-security.kz
+            <div className="space-y-2">
+              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
+                <div>
+                  <div className="text-[9px] font-mono text-slate-400 uppercase tracking-wider font-bold">
+                    {isKk ? "ТЕКСЕРІЛГЕН СКРИНШОТ / СІЛТЕМЕ:" : "ИСТОЧНИК УГРОЗЫ:"}
+                  </div>
+                  <div className="text-xs font-mono text-white font-bold mt-0.5 break-all">
+                    hxxps://kaspi-bonus-50000.online/security
+                  </div>
                 </div>
+                <span className="text-[10px] font-mono text-amber-400 bg-amber-400/10 px-2 py-1 rounded border border-amber-400/20 font-bold shrink-0 ml-2">
+                  FAKE DOMAIN
+                </span>
               </div>
 
               <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                <div className="text-[10px] font-mono text-slate-400 font-bold">{isKk ? "ALEMAI ШЕШІМІ:" : "ВЫВОД ALEMAI:"}</div>
-                <p className="text-xs text-slate-200 mt-1 leading-relaxed">
+                <div className="text-[9px] font-mono text-[#38bdf8] uppercase tracking-wider font-bold">
+                  {isKk ? "ALEMAI ШЕШІМІ ЖӘНЕ СҮЗГІ СИГНАЛДАРЫ:" : "ВЫВОД ALEMAI И СИГНАЛЫ ФИЛЬТРОВ:"}
+                </div>
+                <p className="text-xs text-slate-200 mt-1 leading-relaxed font-semibold">
                   {isKk
-                    ? "«Kaspi банкінің атын жамылған қауіпті фишингтік шабуыл. Сіздің картаңыздың толық деректері мен SMS-кодты ұрлауға бағытталған.»"
-                    : "«Фишинговая атака под бренд Kaspi. Попытка компрометации полных реквизитов карты и одноразового SMS-кода.»"}
+                    ? "«Kaspi банкінің атын жамылған қауіпті фишинг. 50 000 ₸ бонус сылтауымен 16-таңбалы карта нөмірі мен SMS құпия кодын ұрлауға бағытталған.»"
+                    : "«Опасный фишинг-клон Kaspi. Под предлогом выдачи бонуса 50 000 ₸ запрашивает CVV и одноразовый SMS-код подтверждения.»"}
                 </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2 text-center text-xs">
-                <div className="p-2 rounded-xl bg-white/5 border border-white/10">
-                  <div className="text-base font-black text-[#ec5562]">100 / 100</div>
-                  <div className="text-[10px] text-slate-400">Risk Score (Детерминистік)</div>
-                </div>
-                <div className="p-2 rounded-xl bg-white/5 border border-white/10">
-                  <div className="text-base font-black text-emerald-400">Қазақ тілінде</div>
-                  <div className="text-[10px] text-slate-400">Толық түсіндірме</div>
+                <div className="mt-2 flex flex-wrap gap-1.5 text-[9px] font-mono">
+                  <span className="px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30 font-bold">
+                    Spoofing +40
+                  </span>
+                  <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">
+                    Urgency +25
+                  </span>
+                  <span className="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30 font-bold">
+                    Card Request +29
+                  </span>
+                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">
+                    EXIF Cleaned
+                  </span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-2.5 border-t border-white/10 flex items-center justify-between text-xs text-white/60 font-bold">
-              <span>{isKk ? "Шынайы тікелей тестілеу нәтижесі" : "Результат реального сканирования"}</span>
-              <span className="text-[#38bdf8] font-black">QORGAN KZ</span>
+            <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] text-slate-400 font-bold">
+              <span>{isKk ? "Детерминистік скоринг · 0% Галлюцинация" : "Детерминированный скоринг · 0% Галлюцинаций"}</span>
+              <span className="text-[#38bdf8] font-mono font-black">ID: #KZ-98241</span>
+            </div>
+          </div>
+
+          {/* Mockup 2 & 3: Junior Shield + eOtinish Dispatcher Split */}
+          <div className="grid grid-cols-2 gap-2.5">
+            {/* Junior Mode Card */}
+            <div className="rounded-[20px] bg-white p-3 border border-[#121620]/10 shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-[#2775f6]">
+                    JUNIOR SHIELD (13–15)
+                  </span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                </div>
+                <div className="mt-2 text-xs font-black text-[#121620]">
+                  {isKk ? "Кибербуллинг радары" : "Радар кибербуллинга"}
+                </div>
+                <p className="text-[10px] text-[#121620]/70 mt-1 leading-normal font-semibold">
+                  {isKk ? "ӘҚБтК 127-2 бабы: агрессияны тіркеу және 111 шұғыл көмек батырмасы." : "ст. 127-2 КоАП: фиксация буллинга и кнопка экстренной связи 111."}
+                </p>
+              </div>
+              <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono text-[#2775f6] font-bold">
+                <span>111 Сенім желісі</span>
+                <span>SHA-256</span>
+              </div>
+            </div>
+
+            {/* Legal eOtinish Card */}
+            <div className="rounded-[20px] bg-[#2775f6] text-white p-3 shadow-md flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-1.5 border-b border-white/20">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-white/90">
+                    eOtinish / CYBERPOL
+                  </span>
+                  <IconScale size={13} className="text-white" />
+                </div>
+                <div className="mt-2 text-xs font-black text-white">
+                  {isKk ? "Ресми арыз PDF" : "Официальное заявление PDF"}
+                </div>
+                <p className="text-[10px] text-white/85 mt-1 leading-normal font-semibold">
+                  {isKk ? "ҚР ҚК 190 бабы: Алаяқтық ісі бойынша ІІМ Киберполға 1-кликпен жіберу." : "ст. 190 УК: готовое заявление в Киберпол МВД за 1 клик."}
+                </p>
+              </div>
+              <div className="mt-2 pt-1.5 border-t border-white/20 flex items-center justify-between text-[10px] font-mono text-white/90 font-bold">
+                <span>ҚР ҚК 190-бап</span>
+                <span>1-CLICK EXPORT</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1165,14 +1363,14 @@ export function Slide09Demo({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 10: COMPETITIVE ADVANTAGE / DIFFERENTIATION (10/15)
+// SLIDE 10: COMPETITIVE ADVANTAGE / DIFFERENTIATION (10/14)
 // -------------------------------------------------------------
 export function Slide10Differentiation({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
       metaLeft={isKk ? "Бәсекелестерден айырмашылық және қорғаныс кешені" : "Конкурентное преимущество и барьеры входа"}
-      metaRight="10/15"
+      metaRight="10/14"
     >
       <div className="flex flex-col h-full justify-between space-y-3.5">
         <div>
@@ -1277,14 +1475,14 @@ export function Slide10Differentiation({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 11: MARKET SIZE (11/15)
+// SLIDE 11: MARKET SIZE (11/14)
 // -------------------------------------------------------------
 export function Slide11Market({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
       metaLeft={isKk ? "Нарықтық әлеует және пайдаланушылар сұранысы" : "Масштаб рынка и потенциал проникновения"}
-      metaRight="11/15"
+      metaRight="11/14"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full items-center">
         {/* Left: Summary */}
@@ -1363,14 +1561,14 @@ export function Slide11Market({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 12: BUSINESS MODEL (12/15)
+// SLIDE 12: BUSINESS MODEL (12/14)
 // -------------------------------------------------------------
 export function Slide08BusinessModel({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
       metaLeft={isKk ? "Тұрақты табыс моделі: B2C Freemium, B2B және GovTech" : "Модель устойчивой монетизации: B2C Freemium, B2B и GovTech"}
-      metaRight="12/15"
+      metaRight="12/14"
     >
       <div className="flex flex-col h-full justify-between space-y-3.5">
         <div>
@@ -1462,14 +1660,14 @@ export function Slide08BusinessModel({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 13: 2026 ROADMAP (13/15)
+// SLIDE 13: 2026 ROADMAP (13/14)
 // -------------------------------------------------------------
 export function Slide09Roadmap({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
       metaLeft={isKk ? "2026 жылға арналған нақты даму жоспары" : "Дорожная карта развития на 2026 год"}
-      metaRight="13/15"
+      metaRight="13/14"
     >
       <div className="flex flex-col h-full justify-between space-y-3.5">
         <div>
@@ -1578,101 +1776,14 @@ export function Slide09Roadmap({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE 14: DATA PRIVACY & SOVEREIGNTY (14/15)
+// SLIDE 14: CONCLUSION & JURY ACCESS (14/14)
 // -------------------------------------------------------------
-export function Slide14DataPrivacy({ lang = 'kk' }: { lang?: PitchLang }) {
+export function Slide14Final({ lang = 'kk' }: { lang?: PitchLang }) {
   const isKk = lang === 'kk';
   return (
     <SlideFrame
-      metaLeft={isKk ? "Privacy-by-Design қағидаты және Деректер суверенитеті" : "Принцип Privacy-by-Design и Суверенитет данных"}
-      metaRight="14/15"
-    >
-      <div className="flex flex-col h-full justify-between space-y-3">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-black uppercase tracking-wider mb-2">
-            <IconShieldCheck size={14} /> {isKk ? "Сенім және Деректер Егемендігі" : "Доверие и Суверенитет данных"}
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-[#121620] tracking-tight uppercase leading-[1.04]">
-            {isKk ? "Деректер қауіпсіздігі және Құпиялылық" : "Безопасность данных и приватность"}
-          </h2>
-          <p className="mt-1 text-xs sm:text-sm text-[#121620]/75 max-w-2xl font-semibold">
-            {isKk
-              ? "Қауіпсіздік өнімінің өзі 100% қауіпсіз болуы тиіс. Біз қолданушының құпиясын ең жоғары стандартпен қорғаймыз."
-              : "Продукт безопасности сам должен быть на 100% безопасным. Данные обрабатываются внутри контура РК."}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 flex-1 items-stretch">
-          {/* Pillar 1 */}
-          <div className="rounded-[26px] bg-white p-4 sm:p-5 border border-[#121620]/10 flex flex-col justify-between shadow-sm">
-            <div>
-              <div className="text-3xl mb-2">🛡️</div>
-              <h4 className="text-base sm:text-lg font-black text-[#121620]">Автоматты маскалау</h4>
-              <p className="mt-2 text-xs text-[#121620]/75 leading-relaxed font-semibold">
-                Банк картасы нөмірлері (PAN 16 сан), CVV кодтар мен құпия сөздер клиентте автоматты бүркемеленеді.
-              </p>
-            </div>
-            <div className="pt-2.5 border-t border-slate-100 text-[11px] font-mono text-emerald-700 font-bold">
-              Серверге ашық түрде өтпейді
-            </div>
-          </div>
-
-          {/* Pillar 2 */}
-          <div className="rounded-[26px] bg-[#2775f6] text-white p-4 sm:p-5 flex flex-col justify-between shadow-md">
-            <div>
-              <div className="text-3xl mb-2">⛓️</div>
-              <h4 className="text-base sm:text-lg font-black text-white">URL Оқшаулау</h4>
-              <p className="mt-2 text-xs text-white/90 leading-relaxed font-semibold">
-                Күдікті сілтемелер дефангингтеледі (hxxp://...). Азаматтың байқаусызда басып кету қаупі 0%.
-              </p>
-            </div>
-            <div className="pt-2.5 border-t border-white/20 text-[11px] font-mono text-white/90 font-bold">
-              Қауіпсіз Sandbox дефангинг
-            </div>
-          </div>
-
-          {/* Pillar 3 */}
-          <div className="rounded-[26px] bg-[#121620] text-white p-4 sm:p-5 flex flex-col justify-between shadow-lg border border-white/10">
-            <div>
-              <div className="text-3xl mb-2">🇰🇿</div>
-              <h4 className="text-base sm:text-lg font-black text-white">Ұлттық серверлер</h4>
-              <p className="mt-2 text-xs text-slate-300 leading-relaxed font-semibold">
-                ҚР Заңына сәйкес, деректер базасы мен AlemAI инфрақұрылымы тек Қазақстан аумағында орналасқан.
-              </p>
-            </div>
-            <div className="pt-2.5 border-t border-white/10 text-[11px] font-mono text-[#38bdf8] font-bold">
-              Деректер шетелге жіберілмейді
-            </div>
-          </div>
-
-          {/* Pillar 4 */}
-          <div className="rounded-[26px] bg-[#dbe2ec] p-4 sm:p-5 border border-[#121620]/10 flex flex-col justify-between shadow-sm">
-            <div>
-              <div className="text-3xl mb-2">⚖️</div>
-              <h4 className="text-base sm:text-lg font-black text-[#121620]">Ашық этика</h4>
-              <p className="mt-2 text-xs text-[#121620]/75 leading-relaxed font-semibold">
-                AI шешімдері жабық емес. Әрбір нәтижеге негіз болған сигналдар мен баптар ашық көрсетіледі.
-              </p>
-            </div>
-            <div className="pt-2.5 border-t border-[#121620]/10 text-[11px] font-mono text-[#2775f6] font-bold">
-              100% Түсіндірмелі AI (Explainable)
-            </div>
-          </div>
-        </div>
-      </div>
-    </SlideFrame>
-  );
-}
-
-// -------------------------------------------------------------
-// SLIDE 15: CONCLUSION & JURY ACCESS (15/15)
-// -------------------------------------------------------------
-export function Slide15Final({ lang = 'kk' }: { lang?: PitchLang }) {
-  const isKk = lang === 'kk';
-  return (
-    <SlideFrame
-      metaLeft={isKk ? "Қазақстанның қауіпсіз цифрлық болашағы" : "Будущее безопасного интернета Казахстана"}
-      metaRight="15/15"
+      metaLeft={isKk ? "Қазақстанның қауіпсіз цифрлық болашағы · КОМАНДА NXT" : "Будущее безопасного интернета Казахстана · КОМАНДА NXT"}
+      metaRight="14/14"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 h-full items-center">
         {/* Left: Final Clean Vision */}
@@ -1708,6 +1819,28 @@ export function Slide15Final({ lang = 'kk' }: { lang?: PitchLang }) {
             <div className="p-3 rounded-2xl bg-white border border-[#121620]/10 shadow-sm">
               <div className="text-xs font-black text-[#2775f6]">03 / АУДИТОРИЯ</div>
               <div className="text-[11px] text-[#121620]/75 font-bold mt-0.5">Junior & Standard (20M+)</div>
+            </div>
+          </div>
+
+          {/* Team Attribution Box */}
+          <div className="p-3.5 rounded-2xl bg-[#121620] text-white border border-[#38bdf8]/30 flex items-center justify-between shadow-md">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-[#2775f6]/30 border border-[#2775f6]/50 flex items-center justify-center font-black text-[#38bdf8] text-sm tracking-wider">
+                NXT
+              </div>
+              <div>
+                <div className="text-xs font-black uppercase tracking-wider text-[#38bdf8]">
+                  {isKk ? "Жобаны әзірлеген: КОМАНДА NXT" : "Разработка проекта: КОМАНДА NXT"}
+                </div>
+                <div className="text-[11px] text-slate-300 font-semibold">
+                  {isKk ? "QORGAN AI Defense OS · Astana Hub 2026" : "QORGAN AI Defense OS · Astana Hub 2026"}
+                </div>
+              </div>
+            </div>
+            <div className="text-right">
+              <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 font-black tracking-wider">
+                TEAM NXT
+              </span>
             </div>
           </div>
 
@@ -1763,7 +1896,7 @@ export function Slide15Final({ lang = 'kk' }: { lang?: PitchLang }) {
 
             <div className="pt-2.5 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 font-bold">
               <span>Fullstack MVP: Next.js + AlemAI</span>
-              <span className="font-mono text-white font-black">QORGAN KZ · 2026</span>
+              <span className="font-mono text-amber-300 font-black">КОМАНДА NXT</span>
             </div>
           </div>
         </div>
@@ -1773,7 +1906,7 @@ export function Slide15Final({ lang = 'kk' }: { lang?: PitchLang }) {
 }
 
 // -------------------------------------------------------------
-// SLIDE REGISTRY (15 SLIDES)
+// SLIDE REGISTRY (14 SLIDES)
 // -------------------------------------------------------------
 export const PITCH_SLIDES = [
   { id: 1, titleKk: 'Титулдық слайд', titleRu: 'Титульный слайд', subKk: 'QORGAN цифрлық қалқаны', subRu: 'Цифровой щит РК', component: Slide01Hero },
@@ -1784,11 +1917,10 @@ export const PITCH_SLIDES = [
   { id: 6, titleKk: '5 Сатылы AI-Құбыр', titleRu: '5 стадий AI-контура', subKk: 'AlemAI (Qwen 3 8B)', subRu: 'AlemAI (Qwen 3 8B)', component: Slide06TechPipeline },
   { id: 7, titleKk: 'Deterministic Risk Engine', titleRu: 'Deterministic Risk Engine', subKk: 'Галлюцинациясыз скоринг', subRu: 'Скоринг без галлюцинаций', component: Slide07RiskEngine },
   { id: 8, titleKk: '«Алтын 15 минут» & Құқық', titleRu: '«Золотые 15 минут» & Право', subKk: 'ҚР ҚК 190 · eOtinish арызы', subRu: 'ст. 190 УК · Заявление в CyberPol', component: Slide08LegalNavigator },
-  { id: 9, titleKk: 'Тікелей өнім демосы', titleRu: 'Live Demo Lens', subKk: '100/100 Қатерлі инцидент', subRu: '100/100 Критический инцидент', component: Slide09Demo },
+  { id: 9, titleKk: 'Өнім интерфейсі & Сүзгілер', titleRu: 'Интерфейс & Фильтры защиты', subKk: 'Скриншоттар, логика, 5 сүзгі', subRu: 'Скриншоты, логика, 5 фильтров', component: Slide09ProductShowcase },
   { id: 10, titleKk: 'Бәсекелестік басымдық', titleRu: 'Дифференциация', subKk: 'Неге шетелдіктер қауқарсыз?', subRu: 'Почему другие бессильны?', component: Slide10Differentiation },
   { id: 11, titleKk: 'Нарық көлемі (TAM/SAM)', titleRu: 'Объем рынка (TAM/SAM)', subKk: '20M халық · $45M нарық', subRu: '20M граждан · $45M рынок', component: Slide11Market },
   { id: 12, titleKk: 'Бизнес-модель', titleRu: 'Бизнес-модель', subKk: 'Freemium, PRO 990 ₸, B2B', subRu: 'Freemium, PRO 990 ₸, B2B', component: Slide08BusinessModel },
   { id: 13, titleKk: '2026 Жол картасы', titleRu: 'Дорожная карта 2026', subKk: 'Q1 MVP-ден Q4 шлюзге дейін', subRu: 'От Q1 MVP до Q4 интеграций', component: Slide09Roadmap },
-  { id: 14, titleKk: 'Құпиялылық & Егемендік', titleRu: 'Приватность & Суверенитет', subKk: 'Privacy-by-Design · Деректер РК', subRu: 'Privacy-by-Design · Данные в РК', component: Slide14DataPrivacy },
-  { id: 15, titleKk: 'Қорытынды & Демо-кіру', titleRu: 'Финал & Демо-доступ', subKk: 'Жюри үшін демо-аккаунттар', subRu: 'Живые аккаунты для жюри', component: Slide15Final },
+  { id: 14, titleKk: 'Қорытынды & Демо-кіру', titleRu: 'Финал & Команда NXT', subKk: 'Команда NXT · Демо-аккаунттар', subRu: 'Команда NXT · Доступ для жюри', component: Slide14Final },
 ];

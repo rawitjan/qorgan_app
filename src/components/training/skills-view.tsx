@@ -34,15 +34,24 @@ export function SkillsView({
 
   const categories = [
     { id: 'all', label_kk: 'Барлығы', label_ru: 'Все' },
-    { id: 'Киберқауіпсіздік', label_kk: 'Киберқауіпсіздік', label_ru: 'Кибербезопасность' },
-    { id: 'Психология', label_kk: 'Психология', label_ru: 'Психология' },
-    { id: 'Техникалық', label_kk: 'Техникалық', label_ru: 'Технические' },
-    { id: 'Заңнама', label_kk: 'Заңнама', label_ru: 'Правовые' },
+    { id: 'cyber', label_kk: 'CYBER · Цифрлық', label_ru: 'CYBER · Цифровая' },
+    { id: 'safe', label_kk: 'SAFE · Қауіпсіз орта', label_ru: 'SAFE · Безопасная среда' },
+    { id: 'law', label_kk: 'LAW · Құқық', label_ru: 'LAW · Правовая' },
   ];
 
   const filteredSkills = skills.filter((s) => {
     if (selectedCategory === 'all') return true;
-    return s.category === selectedCategory;
+    const cat = (s.category || '').toLowerCase();
+    if (selectedCategory === 'cyber') {
+      return cat === 'cyber' || cat.includes('кибер') || cat.includes('техник') || ['phishing', 'scam_detection', 'social_engineering', 'account_security', 'threat_awareness'].includes(s.slug);
+    }
+    if (selectedCategory === 'safe') {
+      return cat === 'safe' || cat.includes('психол') || ['bullying_response', 'privacy'].includes(s.slug);
+    }
+    if (selectedCategory === 'law') {
+      return cat === 'law' || cat.includes('заң') || cat.includes('прав') || ['legal_literacy', 'consumer_rights'].includes(s.slug);
+    }
+    return cat === selectedCategory;
   });
 
   return (
