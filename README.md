@@ -6,27 +6,6 @@
 
 ---
 
-## 📌 Содержание
-
-* [Ключевые возможности](https://www.google.com/search?q=%23-%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%B2%D1%8B%D0%B5-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8)
-* [Режимы работы: Standard vs Junior](https://www.google.com/search?q=%23-%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%D1%8B-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B-standard-vs-junior)
-* [Функциональные модули платформы](https://www.google.com/search?q=%23-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B8-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B)
-* [1. Qorgan Lens (Сканер угроз)](https://www.google.com/search?q=%231-qorgan-lens-%D1%81%D0%BA%D0%B0%D0%BD%D0%B5%D1%80-%D1%83%D0%B3%D1%80%D0%BE%D0%B7)
-* [2. Интерактивный симулятор обучения (Training Hub)](https://www.google.com/search?q=%232-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9-%D1%81%D0%B8%D0%BC%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80-%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D1%8F-training-hub)
-* [3. Монитор угроз (Threat Pulse)](https://www.google.com/search?q=%233-%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80-%D1%83%D0%B3%D1%80%D0%BE%D0%B7-threat-pulse)
-* [4. Корпоративный кабинет (Organization Workspace)](https://www.google.com/search?q=%234-%D0%BA%D0%BE%D1%80%D0%BF%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9-%D0%BA%D0%B0%D0%B1%D0%B8%D0%BD%D0%B5%D1%82-organization-workspace)
-* [5. Интегрированный Pitch Deck](https://www.google.com/search?q=%235-%D0%B8%D0%BD%D1%82%D0%B5%D0%B3%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B9-pitch-deck)
-
-
-* [Архитектура и стек технологий](https://www.google.com/search?q=%23-%D0%B0%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D1%83%D1%80%D0%B0-%D0%B8-%D1%81%D1%82%D0%B5%D0%BA-%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B9)
-* [Структура проекта](https://www.google.com/search?q=%23-%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0)
-* [Установка и запуск](https://www.google.com/search?q=%23-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA)
-* [Спецификация моделей и типов данных](https://www.google.com/search?q=%23-%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B5%D0%B9-%D0%B8-%D1%82%D0%B8%D0%BF%D0%BE%D0%B2-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85)
-* [Интеграция с реальным бэкендом и LLM](https://www.google.com/search?q=%23-%D0%B8%D0%BD%D1%82%D0%B5%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D1%81-%D1%80%D0%B5%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC-%D0%B1%D1%8D%D0%BA%D0%B5%D0%BD%D0%B4%D0%BE%D0%BC-%D0%B8-llm)
-* [Скрипты сборки и линтинга](https://www.google.com/search?q=%23-%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D1%8B-%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8-%D0%B8-%D0%BB%D0%B8%D0%BD%D1%82%D0%B8%D0%BD%D0%B3%D0%B0)
-
----
-
 ## 🚀 Ключевые возможности
 
 1. **Многоуровневый анализ подозрительного контента (Qorgan Lens):**
